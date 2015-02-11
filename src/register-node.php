@@ -47,34 +47,69 @@ function get_client_ip() {
 		var servIP = <?php print_r( "\"". $_SERVER['SERVER_ADDR'] ."\"");  ?>;
 		var localIP= <?php print_r( "\"". get_client_ip() ."\"");  ?>;
 
-		//test //console.log(localIP+" "+ servIP);
-
 		var apiKey= "777";
-		var timeout= "100";
+		var timeout= "1000";
+		var nodeID= 0;
 
-		function SendRegisterNode(){ //except i cant test it 
+		function RegisterNode(){ //except i cant test it 
 		    
 		    $.ajax({
 		    	url: 'http://'+servIP+
 		    	 '/emoncms/register/register.json?apikey='+apiKey+
 		    	 '&nodeip='+localIP+'&timeout='+timeout+'',
-		    	type: 'post', async: false, cache: false,
+
+		    	type: 'post',
+		    	async: false, cache: false,
 		    	
-		    	success: function(){
+		    	success: function(data){
 		    		//do whatever to confirm
 		    		console.log("request sent");
-		    		//need to also pick up the request - have a get for that later
-		    		CheckNodeID();
+		    		console.log(data);
+		    		nodeID = data;
+		    		
+		    	},
+
+		    	error: function(data){
+		    		console.log("ERROR 10 - Node not registered");
 		    	}
 		    });
 		}
 
-		//leave blank for now 
-		function CheckNodeID(){
-			//how -- check with docs
+		//some temporary numbers for registering
+		var groupID = 1;
+		var attrID = 2; 
+		var attrNumber = 3;
+		var attrDefault = 4;
+
+
+		//call the function in a set of arrays 
+		function RegisterAttribute(){
+
+			$.ajax({
+				url: 'http://'+servIP+
+				'/emoncms/register/setup.json?apikey='+apiKey+
+				'&node='+nodeID+
+				'&json={['+groupID+']['+attrID+']['+attrNumber+'],['+attrDefault+']}'+
+				'&timeout='+timeout+'',
+
+		    	type: 'post',
+		    	async: false, cache: false,
+		    	
+		    	success: function(data){
+		    		//do whatever to confirm
+		    		console.log("request for attribute register sent");
+		    		console.log(data);	
+		    	}, 
+
+		    	error: function(data){
+		    		console.log("ERROR 10 - Attribute not registered");
+		    	}
+		    });
+
 		}
 
-		SendRegisterNode();
+		RegisterNode();
+		RegisterAttribute();
 
     </script>
 </html>
