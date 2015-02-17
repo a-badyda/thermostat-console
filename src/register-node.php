@@ -25,7 +25,7 @@ function get_client_ip() {
 }
 
 ?>
-
+<!DOCTYPE html>
 <html lang="en">
     
     <head>
