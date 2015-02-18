@@ -19,13 +19,16 @@
 
 	function temp_chart(container) {
 
-		var
-		    inside = [5,5,5],
-		    outside = [5, 5, 5],
+		var	
+			derp = [1,2,3,5,5,7,10,21,18, 11, 20, 14,13,20,3,5,5,7,10,21,18, 11, 20, 14],
+		    inside = [],
+		    outside = [],
 		    i;
 
-		for (var j = 0; j < 5; j += 0.1) {
-		    inside.push([j, j+4]);
+		console.log(derp);
+		
+		for (var j = 0; j < 24; j += 0.1) {
+		    inside.push([j, derp[j]]);
 		    //outside.push([j, 3*j+Math.sin(2*j)*2 - 5]);
 		}
 

@@ -16,6 +16,9 @@
 	  	<script src="libraries/jquery-1.11.2.js"></script>
 	  	<script src="libraries/jquery-ui.js"></script>
 	  	<script src="libraries/flotr2.min.js"></script>
+	  	<script src='../lib/moment.min.js'></script>
+		<script src='../lib/jquery.min.js'></script>
+		<script src='../fullcalendar.min.js'></script>
 
 		<script>
 			$(function() {
