@@ -10,11 +10,12 @@
     	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=0"/>
     	<meta name="msapplication-tap-highlight" content="no" />
 	  	
-	  	<title>jQuery UI Tabs - Default functionality</title>
+	  	<title> Thermostat Interface </title>
 	  	<link rel="stylesheet" href="libraries/css/jquery-ui.css">
 	  	
 	  	<script src="libraries/jquery-1.11.2.js"></script>
 	  	<script src="libraries/jquery-ui.js"></script>
+	  	<script src="libraries/flotr2.min.js"></script>
 
 		<script>
 			$(function() {
