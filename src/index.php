@@ -18,8 +18,13 @@
 
 		<script>
 			$(function() {
-				$( "#tabs" ).tabs();
-				$("#login").html('<object data="192.168.2.59/thermostat-console/src/stats.php"/>');
+				$("#tabs").tabs();
+
+				//begin loading in parts of the site 
+				$("#stats").load("stats.php");
+				$("#heat").load("heat.php");
+				$("#book").load("book.php");
+				$("#login").load("login.php");
 
 		  	});
 
@@ -37,21 +42,19 @@
 		  	</ul>
 
 		  	<div id="stats">
-				<p> hello friends </p>
+				
 			</div>
 
 		  	<div id="heat">
-				<p> What</p>
+				
 			</div>
 
 		  	<div id="book">
-				<p> why </p>
+	
 			</div>
 
 			<div id="login">
-				<object type="text/html" data="http://validator.w3.org/" width="800px" height="600px" 
-				 style="overflow:auto;border:5px ridge blue">
-				</object>
+
 			</div>
 
 
