@@ -140,14 +140,9 @@ function get_client_ip() {
 		    });
 		}
 
-		//some temporary numbers for registering
-		var groupID = 1;
-		var attrID = 2; 
-		var attrNumber = 3;
-		var attrDefault = 4;
-
+		
 		//call the function in a set of arrays 
-		function RegisterAttribute(){
+		function RegisterAttribute(groupID, attrID, attrNumber, attrDefault){
 
 			$.ajax({
 				url: 'http://'+servIP+
@@ -161,7 +156,7 @@ function get_client_ip() {
 		    	
 		    	success: function(data){
 		    		//do whatever to confirm
-		    		console.log("request for attribute register sent");
+		    		console.log("request for attribute "+groupID+" "+attrID+" register sent");
 		    		console.log(data);	
 		    	}, 
 
@@ -173,7 +168,7 @@ function get_client_ip() {
 		}
 
 		//not finished
-		function RequestAttribute(){
+		function RequestAttribute(groupID, attrID, attrNumber){
 			$.ajax({
 				url: "http://"+localIP+"emoncms/feed/value.json?apikey="+
 				 "["+apiKey+"]&node="+nodeID+
@@ -198,11 +193,24 @@ function get_client_ip() {
 		RegisterNode();
 
 
-		for (var i = allGroupID.length - 1; i >= 0; i--) {
-			allGroupID[i]
-		};
+		//thermostat info load in data  -- CONSIDER DEF. VALUES
+	  	var groupID = thermostatGroup.groupID;
+	  	var infoAttrID = thermostatGroup.attrSet.thermostatInfo.attrSetID;
 
-		RegisterAttribute();
+	 	for (var i = thermostatGroup.attrSet.thermostatInfo.attrSet.length - 1; i >= 0; i--) {
+	  		var attrNumber = thermostatGroup.attrSet.thermostatInfo.attrSet[i];
+
+	  		RegisterAttribute(groupID, infoAttrID, attrNumber, 55);
+	  	}
+
+	  	//thermostat settings load in data -- CONSIDER DEF. VALUES
+		var infoAttrID = thermostatGroup.attrSet.thermostatSettings.attrSetID;
+
+	 	for (var i = thermostatGroup.attrSet.thermostatSettings.attrSet.length - 1; i >= 0; i--) {
+	  		var attrNumber = thermostatGroup.attrSet.thermostatSettings.attrSet[i];
+
+	  		RegisterAttribute(groupID, infoAttrID, attrNumber, 22);
+	  	}
 
 
     </script>
