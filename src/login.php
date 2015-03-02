@@ -1,7 +1,7 @@
 <?php
 
 ?>
-<script> console.log("login loaded"); </script>
+<script> console.log("booking loaded"); </script>
 
 <!-- makeshift CSS to center the login on site -->
 <style type="text/css">
