@@ -18,6 +18,7 @@
 	  	
 		<script src="libraries/jquery-1.11.2.js"></script>
 	  	<script src="libraries/jquery-ui.js"></script>
+	  	<script src="libraries/flotr2.min.js"></script>
 
 		<script>
 			$(function() {

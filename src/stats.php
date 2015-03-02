@@ -1,7 +1,6 @@
 <?php
 
 ?>
-<<<<<<< HEAD
 <style type="text/css">
     #temp-chart{
 	    width: 600px; 
@@ -13,13 +12,7 @@
 	    font-family: verdana;
 	}
 </style>
-=======
->>>>>>> parent of 48b18dd... Produced a graph, working on configuring data array
 
-<p> hello </p>
-<script> console.log("stats loaded"); </script>
-
-<<<<<<< HEAD
 <script> console.log("stats loaded"); 
 	
 	var graph;
@@ -140,5 +133,3 @@
 <div id="temp-chart">
 
 </div>
-=======
->>>>>>> parent of 48b18dd... Produced a graph, working on configuring data array
