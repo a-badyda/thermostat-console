@@ -5,6 +5,8 @@
     #temp-chart{
 	    width: 600px; 
 	    height: 300px;
+	    display: block;
+	    visibility: visible;
 	}
 	body{
 	    font-family: verdana;
@@ -20,7 +22,7 @@
 	function temp_chart(container) {
 
 		var	
-			derp = [1,2,3,5,5,7,10,21,18, 11, 20, 14,13,20,3,5,5,7,10,21,18, 11, 20, 14],
+			derp = [],//[0,3,10,0],
 		    inside = [],
 		    outside = [],
 		    i;
@@ -28,7 +30,7 @@
 		console.log(derp);
 		
 		for (var j = 0; j < 24; j += 0.1) {
-		    inside.push([j, derp[j]]);
+		    inside.push([derp[j], j]);
 		    //outside.push([j, 3*j+Math.sin(2*j)*2 - 5]);
 		}
 

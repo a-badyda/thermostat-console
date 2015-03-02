@@ -168,19 +168,27 @@ function get_client_ip() {
 		}
 
 		//not finished
-		function RequestAttribute(groupID, attrID, attrNumber){
+		function RequestLocalTemp(){
+			
+			var 
+				groupID = "0x0201",
+				attrID = "0x0000",
+				attrNumber = "0x0000";	
+				nodeID = 5;		
+
 			$.ajax({
-				url: "http://"+localIP+"emoncms/feed/value.json?apikey="+
-				 "["+apiKey+"]&node="+nodeID+
-				 "&id=["+groupID+"]["+attrID+"]["+attrNumber+"][assigned node id]"+
-				 "&timeout=["+timeout+"]",
+				url: 'http://'+servIP+'/emoncms/feed/value.json?apikey='+apiKey+
+				 '&node='+nodeID+
+				 '&id='+groupID+''+attrID+''+attrNumber+''+nodeID+
+				 '&timeout='+timeout+'',
+
 
 				type:'post',
 				async: false, cache: false,
 
 				success: function(data){
 		    		//do whatever to confirm
-		    		console.log("request for attribute sent");
+		    		console.log("request for local temperature data sent");
 		    		console.log(data);	
 		    	}, 
 
@@ -212,6 +220,7 @@ function get_client_ip() {
 	  		RegisterAttribute(groupID, infoAttrID, attrNumber, 22);
 	  	}
 
+	  	RequestLocalTemp();
 
     </script>
 </html>
