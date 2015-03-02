@@ -2,8 +2,10 @@
 
 ?>
 
+<p> hello </p>
 <script> console.log("booking loaded"); </script>
 
+<<<<<<< HEAD
 <style>
 
 	body {
@@ -25,3 +27,5 @@
 <div id="calendar">
 
 </div>
+=======
+>>>>>>> parent of efbedc4... tried to do booking things

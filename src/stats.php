@@ -29,8 +29,7 @@
 		
 		for (var j = 0; j < 24; j += 0.1) {
 		    inside.push([derp[j], j]);
-		    //outside.push([j, 3*j+Math.sin(2*j)*2 - 5]);
-		}
+
 
 		var markerFormatter = function(obj){
 			// return obj.y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
