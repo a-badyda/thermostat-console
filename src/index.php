@@ -22,14 +22,14 @@
 
 		<script>
 			$(function() {
-				$("#tabs").tabs();
+				$("#tabs").tabs({selected: 'stats.php' });
 
 				//begin loading in parts of the site 
 				$("#stats").load("stats.php");
 				$("#heat").load("heat.php");
 				$("#book").load("book.php");
 				$("#login").load("login.php");
-				
+
 		  	});
 
 		  </script>

@@ -168,7 +168,7 @@ function get_client_ip() {
 		}
 
 		//not finished
-		function RequestLocalTemp(){
+		function RequestLocalTemp(storeData){
 			
 			var 
 				groupID = "0x0201",
@@ -177,19 +177,22 @@ function get_client_ip() {
 				nodeID = 5;		
 
 			$.ajax({
+				/*
 				url: 'http://'+servIP+'/emoncms/feed/value.json?apikey='+apiKey+
 				 '&node='+nodeID+
 				 '&id='+groupID+''+attrID+''+attrNumber+''+nodeID+
 				 '&timeout='+timeout+'',
-
+				*/
+				url: 'http://'+servIP+'/thermostat-console/src/test-data.php',
 
 				type:'post',
 				async: false, cache: false,
 
 				success: function(data){
 		    		//do whatever to confirm
-		    		console.log("request for local temperature data sent");
-		    		console.log(data);	
+		    		console.log(data);
+		    		storeData = data;
+		    		return data;
 		    	}, 
 
 		    	error: function(data){
@@ -219,8 +222,6 @@ function get_client_ip() {
 
 	  		RegisterAttribute(groupID, infoAttrID, attrNumber, 22);
 	  	}
-
-	  	RequestLocalTemp();
 
     </script>
 </html>
