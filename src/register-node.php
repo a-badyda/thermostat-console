@@ -158,6 +158,7 @@ function get_client_ip() {
 		    		//do whatever to confirm
 		    		console.log("request for attribute "+groupID+" "+attrID+" register sent");
 		    		console.log(data);	
+
 		    	}, 
 
 		    	error: function(data){
@@ -167,8 +168,8 @@ function get_client_ip() {
 
 		}
 
-		//not finished
-		function RequestLocalTemp(storeData){
+		//request for a local temperature
+		function RequestLocalTemp(){
 			
 			var 
 				groupID = "0x0201",
@@ -192,14 +193,22 @@ function get_client_ip() {
 		    		//do whatever to confirm
 		    		console.log(data);
 		    		storeData = data;
-		    		return data;
 		    	}, 
 
 		    	error: function(data){
 		    		console.log("ERROR 10 - Attribute not registered");
+		    	},
+		    	done: function(data){
+		    		//callback(storeData);
 		    	}
 		    });
 		}
+		//request for the external temperature
+		function RequestOutsideTemp(){
+
+		}
+
+
 
 		RegisterNode();
 

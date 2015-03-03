@@ -19,6 +19,8 @@
 	
 	var graph;
 
+/*
+
 	function temp_chart(container) {
 
 		var	derp = [];
@@ -31,8 +33,7 @@
 		for (var j = 0; j < 24; j += 0.1) {
 		    //inside.push([derp[j], j]);
 		}
-		RequestLocalTemp(inside);
-		inside = RequestLocalTemp(inside);
+
 		console.log(inside);
 
 		var markerFormatter = function(obj){
@@ -53,8 +54,9 @@
 			}
 		);
 	}
+*/
 
-	temp_chart(document.getElementById("temp-chart"));
+	//temp_chart(document.getElementById("temp-chart"));
 
 </script>
 
