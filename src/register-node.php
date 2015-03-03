@@ -156,7 +156,7 @@ function get_client_ip() {
 		    	
 		    	success: function(data){
 		    		//do whatever to confirm
-		    		console.log("request for attribute "+groupID+" "+attrID+" register sent");
+		    		console.log("request for attribute "+groupID+" "+attrNumber+" register sent");
 		    		console.log(data);	
 
 		    	}, 
@@ -168,13 +168,14 @@ function get_client_ip() {
 
 		}
 
+		//get rid of nodeIP setting later this is all due to testing
 		//request for a local temperature
 		function RequestLocalTemp(){
 			
 			var 
 				groupID = "0x0201",
 				attrID = "0x0000",
-				attrNumber = "0x0000";	
+				attrNumber = "0x0000";	//only thing that's diff from call 2 
 				nodeID = 5;		
 
 			$.ajax({
@@ -191,7 +192,7 @@ function get_client_ip() {
 
 				success: function(data){
 		    		//do whatever to confirm
-		    		console.log(data);
+		    		//console.log(data);
 		    		storeData = data;
 		    	}, 
 
@@ -200,12 +201,44 @@ function get_client_ip() {
 		    	},
 		    	done: function(data){
 		    		//callback(storeData);
+		    		return storeData;
 		    	}
 		    });
 		}
-		//request for the external temperature
-		function RequestOutsideTemp(){
 
+		//request for the external temperature -- currently fetching same data as internal
+		function RequestOutsideTemp(){
+			var 
+				groupID = "0x0201",
+				attrID = "0x0000",
+				attrNumber = "0x0001";	
+				nodeID = 5;		
+
+			$.ajax({
+				/*
+				url: 'http://'+servIP+'/emoncms/feed/value.json?apikey='+apiKey+
+				 '&node='+nodeID+
+				 '&id='+groupID+''+attrID+''+attrNumber+''+nodeID+
+				 '&timeout='+timeout+'',
+				*/
+				url: 'http://'+servIP+'/thermostat-console/src/test-data.php',
+
+				type:'post',
+				async: false, cache: false,
+
+				success: function(data){
+		    		//do whatever to confirm
+		    		//console.log(data);
+		    		storeData = data;
+		    	}, 
+
+		    	error: function(data){
+		    		console.log("ERROR 10 - Attribute not registered");
+		    	},
+		    	done: function(data){
+		    		return storeData;
+		    	}
+		    });
 		}
 
 

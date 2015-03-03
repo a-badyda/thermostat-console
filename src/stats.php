@@ -19,6 +19,16 @@
 	
 	var graph;
 
+	RequestLocalTemp();
+	RequestOutsideTemp();
+
+	$.when( RequestLocalTemp(), RequestOutsideTemp() ).done(function( inside, outside ) {
+  		// inside and outside are arguments resolved for the page1 and page2 ajax requests, respectively.
+  		// Each argument is an array with the following structure: [ data, statusText, jqXHR ]
+	  	console.log(inside);
+	});
+
+
 /*
 
 	function temp_chart(container) {
