@@ -136,7 +136,11 @@ function get_client_ip() {
 		    		//do whatever to confirm
 		    		console.log("request for node sent");
 		    		console.log(data);
-		    		nodeID = data;
+		    		nodeID = data; 
+		    		
+		    		//test code
+		    		if (nodeID===null){ nodeID = 5}
+
 		    		localStorage.setItem("nodeID", data);
 		    		//thermostat info load in data  -- CONSIDER DEF. VALUES
 				  	var groupID = thermostatGroup.groupID;
@@ -155,6 +159,12 @@ function get_client_ip() {
 				  		var attrNumber = thermostatGroup.attrSet.thermostatSettings.attrSet[i];
 
 				  		RegisterAttribute(groupID, infoAttrID, attrNumber, 22);
+				  	}
+
+				  	//register humidity stuff
+				  	for (var i = humidityGroup.atrributeSet.attrSet.length-1; i >=0; i--){
+				  		var attrNumber = humidityGroup.attributeSet.attrSet[i];
+				  		RegisterAttribute(humidityGroup.groupID, humidityGroup.attributeSet.attrSetID, attrNumber, 22);
 				  	}
 		    	},
 
@@ -203,7 +213,6 @@ function get_client_ip() {
 				groupID = "0x0201",
 				attrID = "0x0000",
 				attrNumber = "0x0000";	//only thing that's diff from call 2 
-				nodeID = 5;	
 
 			$.ajax({
 				/*
@@ -215,7 +224,7 @@ function get_client_ip() {
 				url: 'http://'+servIP+'/thermostat-console/src/test-data.php',
 
 				type:'post',
-				async: false, cache: false,
+				async: true, cache: false,
 
 				success: function(data){
 		    		storeData = data;
@@ -238,7 +247,6 @@ function get_client_ip() {
 				groupID = "0x0201",
 				attrID = "0x0000",
 				attrNumber = "0x0001";	
-				nodeID = 5;		
 
 			$.ajax({
 				/*
@@ -247,10 +255,10 @@ function get_client_ip() {
 				 '&id='+groupID+''+attrID+''+attrNumber+''+nodeID+
 				 '&timeout='+timeout+'',
 				*/
-				url: 'http://'+servIP+'/thermostat-console/test-data1.php',
+				url: 'http://'+servIP+'/thermostat-console/src/test-data1.php',
 
 				type:'post',
-				async: false, cache: false,
+				async: true, cache: false,
 
 				success: function(data){
 		    		//do whatever to confirm
@@ -267,7 +275,6 @@ function get_client_ip() {
 		    	}
 		    });
 		}
-
 
 		function GraphChart(inside, outside){
 
@@ -358,6 +365,75 @@ function get_client_ip() {
 				    }
 				}
 			);
+		}
+
+		RequestHumidity();
+
+		function RequestHumidity(){
+			var 
+				groupID = "0x0405",
+				attrID = "0x0000",
+				attrNumber = "0x0000";  
+
+			$.ajax({
+				/*
+				url: 'http://'+servIP+'/emoncms/feed/value.json?apikey='+apiKey+
+				 '&node='+nodeID+
+				 '&id='+groupID+''+attrID+''+attrNumber+''+nodeID+
+				 '&timeout='+timeout+'',
+				*/
+				url: 'http://'+servIP+'/thermostat-console/src/test-data2.php',
+
+				type:'post',
+				async: true, cache: false,
+
+				success: function(data){
+		    		storeData = data;
+		    		localStorage.setItem("humidNow", data);
+		    		
+		    	}, 
+
+		    	error: function(data){
+		    		console.log("ERROR 10 - Attribute not registered");
+		    	},
+		    	done: function(data){
+		    		//callback(storeData);
+		    		//return storeData;
+		    	}
+		    });
+		}
+
+		function showTemperature(){
+			console.log(localStorage.getItem("insideNow")+ " "+ localStorage.getItem("outsideNow"));
+			//append temperature data
+			var currentOut = localStorage.getItem("outsideNow").substr(localStorage.getItem("outsideNow").indexOf(",")+1); 
+			var currentIn = localStorage.getItem("insideNow").substr(localStorage.getItem("insideNow").indexOf(",")+1); 
+			var currentHu = localStorage.getItem("humidNow");
+			
+			$( "#temperature-inside" ).append( currentIn );
+			$( "#temperature-outside" ).append( currentOut );	
+			$( "#humidity-now" ).append( currentHu );
+			
+
+			$( "#temperature-inside" ).css({
+				"color" : "#00A8F0",
+				"font-size" : "18px" 
+			});
+			
+			$( "#temperature-outside" ).css({
+				"color": "#A5BA00", 
+				"font-size" : "18px"
+			});
+
+			$( "#humidity-now" ).css({
+				"color" : "#9CA1FD",
+				"font-size" : "18px" 
+			});
+
+
+
+			//apply some style to the strings to make it stand out more
+
 		}
 				
     </script>
