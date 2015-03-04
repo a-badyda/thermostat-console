@@ -13,7 +13,10 @@ $temperatureData = array(
 	array(6, 20),
 	array(7, 20),
 	array(8, 18),
-	array(9, 15)
+	array(9, 15),
+	array(10, 13),
+	array(11, 10),
+	array(12, 13)
 	);
 
 // Send the data.

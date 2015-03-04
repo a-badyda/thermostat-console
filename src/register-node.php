@@ -254,6 +254,8 @@ function get_client_ip() {
 
 				success: function(data){
 		    		//do whatever to confirm
+		    		localStorage.setItem("insideNow", tempData[tempData.length-1]);
+		    		localStorage.setItem("outsideNow", data[data.length-1]);
 		    		GraphChart(tempData, data);
 		    	}, 
 
