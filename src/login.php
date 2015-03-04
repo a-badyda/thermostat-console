@@ -6,7 +6,7 @@
 <!-- makeshift CSS to center the login on site -->
 <style type="text/css">
     #login-data{
-        margin: 20% auto;
+        margin: 10% auto;
         width: 100px;
     }
 </style>

@@ -265,7 +265,11 @@ function get_client_ip() {
 					{ data: inside, label: "Indoor temperature" },
 					{ data: outside, label: "Outdoor temperature" }
 				], 
+				
 				{
+					resolution: 2,
+					fontSize: 6,
+
 					points:{
 						show: true
 					},
@@ -280,12 +284,18 @@ function get_client_ip() {
 					    labelsAngle: 0,
 					    title: 'Time',
 					    titleAngle: '0',
+					    noTicks: 12,
 					    //e is a modifier on the time - start at 24h ago +e
+					    //if more than 24 (new day) elapse back to 0 (-24 on number)
 					    tickFormatter: function (e){ 
-					    	temp = new Date();
-					    	time = parseInt(temp.getHours())+parseInt(e);
-					    	if(time > 24){ time =-24 } 
+					    	var temp = new Date();
+					   		//start at 12 hours ago
+					   		var time = parseInt(temp.getHours()) - 12;
+					   		//add +1/2/3 etc modifier to get closer to current time 
+					   		//+1 because e starts at 0 
+					    	var time =+parseInt(e)+1;
 					    	return ( time )+":00";
+					    	
 					    },
 
 				   	},
@@ -293,16 +303,25 @@ function get_client_ip() {
 					    showLabels: true,
 					    showMinorLabels: true,
 					    labelsAngle: 0,
-					    title: 'Temperature',
+					    //title: 'Temperature',
 					    titleAngle: '90',
 					    min: -20,
 					    max: 40,
+					    noTicks: 10,
 					    tickFormatter: function (e){ return e+" C"},
 
 					},
 					mouse : {
 						track : true,
-					   	trackFormatter: function (e){ return e.y+" C, at " + e.x + ":00"},
+					   	trackFormatter: function (e){ 
+					   		var temp = new Date();
+					   		//start at 12 hours ago
+					   		var time = parseInt(temp.getHours()) - 12;
+					   		//add +1/2/3 etc modifier to get closer to current time 
+					   		//+1 because e starts at 0 
+					    	var time =+parseInt(e.x)+1;
+					    	return e.y+" C, at " +( time )+":00";
+					   	},
 					   	trackDecimals: 0,
 					   	relative: false,
 					   	position: 'se',

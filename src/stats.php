@@ -3,7 +3,7 @@
 ?>
 <style type="text/css">
     #temp-chart{
-	    width: 600px; 
+	    width: 700px; 
 	    height: 300px;
 	    display: block;
 	    visibility: visible;
