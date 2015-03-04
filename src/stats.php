@@ -21,46 +21,11 @@
 
 	RequestLocalTemp();
 
-/*
-
-	function temp_chart(container) {
-
-		var	derp = [];
-		var inside =[];
-		var outside = [];
-		var i;
-
-	  	RequestLocalTemp(inside);
-
-		for (var j = 0; j < 24; j += 0.1) {
-		    //inside.push([derp[j], j]);
-		}
-
-		console.log(inside);
-
-		var markerFormatter = function(obj){
-			return ' '+(obj.y).toFixed(0) + '%';
-		}
-
-		// Draw the graph
-		graph = Flotr.draw(
-			container, 
-			[ inside, outside ], 
-			{
-			    xaxis: {
-			      	minorTickFreq: 4
-			    }, 
-			    grid: {
-			     	minorVerticalLines: true
-			    }
-			}
-		);
-	}
-*/
-
-	//temp_chart(document.getElementById("temp-chart"));
+	//Find a way to display the Current Temperature (in & out)
+	//Find a way to display humidity 
 
 </script>
+
 
 <div id="temp-chart">
 

@@ -225,7 +225,7 @@ function get_client_ip() {
 				 '&id='+groupID+''+attrID+''+attrNumber+''+nodeID+
 				 '&timeout='+timeout+'',
 				*/
-				url: 'http://'+servIP+'/thermostat-console/src/test-data.php',
+				url: 'http://'+servIP+'/thermostat-console/test-data1.php',
 
 				type:'post',
 				async: false, cache: false,
@@ -261,12 +261,63 @@ function get_client_ip() {
 			// Draw the graph
 			graph = Flotr.draw(
 				document.getElementById("temp-chart"), 
-				[ inside, outside ], 
+				[ 
+					{ data: inside, label: "Indoor temperature" },
+					{ data: outside, label: "Outdoor temperature" }
+				], 
 				{
-				    xaxis: {
-				      	minorTickFreq: 4
-				    }, 
-				    grid: {
+					points:{
+						show: true
+					},
+
+					lines:{
+						show: true
+					},
+
+				    xaxis : {
+					    showLabels: true,
+					    showMinorLabels: true,
+					    labelsAngle: 0,
+					    title: 'Time',
+					    titleAngle: '0',
+					    //e is a modifier on the time - start at 24h ago +e
+					    tickFormatter: function (e){ 
+					    	temp = new Date();
+					    	time = parseInt(temp.getHours())+parseInt(e);
+					    	if(time > 24){ time =-24 } 
+					    	return ( time )+":00";
+					    },
+
+				   	},
+					yaxis : {
+					    showLabels: true,
+					    showMinorLabels: true,
+					    labelsAngle: 0,
+					    title: 'Temperature',
+					    titleAngle: '90',
+					    min: -20,
+					    max: 40,
+					    tickFormatter: function (e){ return e+" C"},
+
+					},
+					mouse : {
+						track : true,
+					   	trackFormatter: function (e){ return e.y+" C, at " + e.x + ":00"},
+					   	trackDecimals: 0,
+					   	relative: false,
+					   	position: 'se',
+					   	lineColor: '#ffff00',
+					   	sensibility: 2,
+					   	trackY: true,
+					   	radius: 3,
+					   	margin: 5,
+					   	mouseTextColor: '#ffffff',
+					   	mouseBGColor: '#000000',
+					   	boxAlpha: '0.8',
+					   	fillColor: null,
+					   	fillOpacity: 0.8   
+					},
+					grid: {
 				     	minorVerticalLines: true
 				    }
 				}
