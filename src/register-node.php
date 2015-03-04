@@ -49,7 +49,7 @@ function get_client_ip() {
 
 		var apiKey= "777";
 		var timeout= "1000";
-		var nodeID= 0;
+		var nodeID= localStorage.getItem("nodeID");
 
 		//array of all group IDs the thermostat needs to include 
 		var allGroupID = [
@@ -116,6 +116,12 @@ function get_client_ip() {
 			}
 		};
 
+		//check if the node ID is registered on the said device 
+		if (localStorage.getItem("nodeID") === null) {
+			//start registering everything 
+  			RegisterNode();  			
+		}
+
 		function RegisterNode(){ //except i cant test it 
 		    
 		    $.ajax({
@@ -128,10 +134,28 @@ function get_client_ip() {
 		    	
 		    	success: function(data){
 		    		//do whatever to confirm
-		    		console.log("request sent");
+		    		console.log("request for node sent");
 		    		console.log(data);
 		    		nodeID = data;
-		    		
+		    		localStorage.setItem("nodeID", data);
+		    		//thermostat info load in data  -- CONSIDER DEF. VALUES
+				  	var groupID = thermostatGroup.groupID;
+				  	var infoAttrID = thermostatGroup.attrSet.thermostatInfo.attrSetID;
+
+				 	for (var i = thermostatGroup.attrSet.thermostatInfo.attrSet.length - 1; i >= 0; i--) {
+				  		var attrNumber = thermostatGroup.attrSet.thermostatInfo.attrSet[i];
+
+				  		RegisterAttribute(groupID, infoAttrID, attrNumber, 55);
+				  	}
+
+				  	//thermostat settings load in data -- CONSIDER DEF. VALUES
+					var infoAttrID = thermostatGroup.attrSet.thermostatSettings.attrSetID;
+
+				 	for (var i = thermostatGroup.attrSet.thermostatSettings.attrSet.length - 1; i >= 0; i--) {
+				  		var attrNumber = thermostatGroup.attrSet.thermostatSettings.attrSet[i];
+
+				  		RegisterAttribute(groupID, infoAttrID, attrNumber, 22);
+				  	}
 		    	},
 
 		    	error: function(data){
@@ -168,6 +192,7 @@ function get_client_ip() {
 
 		}
 
+		//this starts off the whole graphing process on the stats pageS
 		RequestLocalTemp();
 
 		//get rid of nodeIP setting later this is all due to testing
@@ -193,8 +218,6 @@ function get_client_ip() {
 				async: false, cache: false,
 
 				success: function(data){
-		    		//do whatever to confirm
-		    		//console.log(data);
 		    		storeData = data;
 		    		RequestOutsideTempAndProcess(data);
 		    	}, 
@@ -216,7 +239,6 @@ function get_client_ip() {
 				attrID = "0x0000",
 				attrNumber = "0x0001";	
 				nodeID = 5;		
-				console.log(tempData);
 
 			$.ajax({
 				/*
@@ -232,12 +254,7 @@ function get_client_ip() {
 
 				success: function(data){
 		    		//do whatever to confirm
-		    		//console.log(tempData);
-		    		//console.log(data);
 		    		GraphChart(tempData, data);
-
-		    		//storeData = data;
-		    		//console.log()
 		    	}, 
 
 		    	error: function(data){
@@ -251,8 +268,6 @@ function get_client_ip() {
 
 
 		function GraphChart(inside, outside){
-
-			console.log("heloo");
 
 			var markerFormatter = function(obj){
 				return ' '+(obj.y).toFixed(0) + '%';
@@ -305,10 +320,10 @@ function get_client_ip() {
 					    labelsAngle: 0,
 					    //title: 'Temperature',
 					    titleAngle: '90',
-					    min: -20,
-					    max: 40,
+					   	//min: -20,
+					    //max: 40,
 					    noTicks: 10,
-					    tickFormatter: function (e){ return e+" C"},
+					    tickFormatter: function (e){ return e+"C"},
 
 					},
 					mouse : {
@@ -342,28 +357,6 @@ function get_client_ip() {
 				}
 			);
 		}
-
-		RegisterNode();
-
-
-		//thermostat info load in data  -- CONSIDER DEF. VALUES
-	  	var groupID = thermostatGroup.groupID;
-	  	var infoAttrID = thermostatGroup.attrSet.thermostatInfo.attrSetID;
-
-	 	for (var i = thermostatGroup.attrSet.thermostatInfo.attrSet.length - 1; i >= 0; i--) {
-	  		var attrNumber = thermostatGroup.attrSet.thermostatInfo.attrSet[i];
-
-	  		RegisterAttribute(groupID, infoAttrID, attrNumber, 55);
-	  	}
-
-	  	//thermostat settings load in data -- CONSIDER DEF. VALUES
-		var infoAttrID = thermostatGroup.attrSet.thermostatSettings.attrSetID;
-
-	 	for (var i = thermostatGroup.attrSet.thermostatSettings.attrSet.length - 1; i >= 0; i--) {
-	  		var attrNumber = thermostatGroup.attrSet.thermostatSettings.attrSet[i];
-
-	  		RegisterAttribute(groupID, infoAttrID, attrNumber, 22);
-	  	}
-
+				
     </script>
 </html>
