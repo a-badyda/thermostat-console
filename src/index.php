@@ -1,5 +1,5 @@
 <?php
-	include("register-node.php");
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -13,7 +13,7 @@
     	<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=0"/>
     	<meta name="msapplication-tap-highlight" content="no" />
 	  	
-	  	<title>jQuery UI Tabs - Default functionality</title>
+	  	<title>Themostat Console Interface</title>
 	  	<link rel="stylesheet" href="libraries/css/jquery-ui.css">
 	  	
 		<script src="libraries/jquery-1.11.2.js"></script>

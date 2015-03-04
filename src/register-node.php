@@ -124,7 +124,7 @@ function get_client_ip() {
 		    	 '&nodeip='+localIP+'&timeout='+timeout+'',
 
 		    	type: 'post',
-		    	async: false, cache: false,
+		    	async: true, cache: false,
 		    	
 		    	success: function(data){
 		    		//do whatever to confirm
@@ -152,7 +152,7 @@ function get_client_ip() {
 				'&timeout='+timeout+'',
 
 		    	type: 'post',
-		    	async: false, cache: false,
+		    	async: true, cache: false,
 		    	
 		    	success: function(data){
 		    		//do whatever to confirm
@@ -168,6 +168,8 @@ function get_client_ip() {
 
 		}
 
+		RequestLocalTemp();
+
 		//get rid of nodeIP setting later this is all due to testing
 		//request for a local temperature
 		function RequestLocalTemp(){
@@ -176,7 +178,7 @@ function get_client_ip() {
 				groupID = "0x0201",
 				attrID = "0x0000",
 				attrNumber = "0x0000";	//only thing that's diff from call 2 
-				nodeID = 5;		
+				nodeID = 5;	
 
 			$.ajax({
 				/*
@@ -194,6 +196,7 @@ function get_client_ip() {
 		    		//do whatever to confirm
 		    		//console.log(data);
 		    		storeData = data;
+		    		RequestOutsideTempAndProcess(data);
 		    	}, 
 
 		    	error: function(data){
@@ -201,18 +204,19 @@ function get_client_ip() {
 		    	},
 		    	done: function(data){
 		    		//callback(storeData);
-		    		return storeData;
+		    		//return storeData;
 		    	}
 		    });
 		}
 
 		//request for the external temperature -- currently fetching same data as internal
-		function RequestOutsideTemp(){
+		function RequestOutsideTempAndProcess(tempData){
 			var 
 				groupID = "0x0201",
 				attrID = "0x0000",
 				attrNumber = "0x0001";	
 				nodeID = 5;		
+				console.log(tempData);
 
 			$.ajax({
 				/*
@@ -228,20 +232,46 @@ function get_client_ip() {
 
 				success: function(data){
 		    		//do whatever to confirm
+		    		//console.log(tempData);
 		    		//console.log(data);
-		    		storeData = data;
+		    		GraphChart(tempData, data);
+
+		    		//storeData = data;
+		    		//console.log()
 		    	}, 
 
 		    	error: function(data){
 		    		console.log("ERROR 10 - Attribute not registered");
 		    	},
 		    	done: function(data){
-		    		return storeData;
+		    		//return storeData;
 		    	}
 		    });
 		}
 
 
+		function GraphChart(inside, outside){
+
+			console.log("heloo");
+
+			var markerFormatter = function(obj){
+				return ' '+(obj.y).toFixed(0) + '%';
+			}
+
+			// Draw the graph
+			graph = Flotr.draw(
+				document.getElementById("temp-chart"), 
+				[ inside, outside ], 
+				{
+				    xaxis: {
+				      	minorTickFreq: 4
+				    }, 
+				    grid: {
+				     	minorVerticalLines: true
+				    }
+				}
+			);
+		}
 
 		RegisterNode();
 
