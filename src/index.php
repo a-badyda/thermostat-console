@@ -1,5 +1,5 @@
 <?php
-
+	include("register-node.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -25,14 +25,24 @@
 				$("#tabs").tabs({selected: 'stats.php' });
 
 				//begin loading in parts of the site 
-				$("#stats").load("stats.php");
 				$("#heat").load("heat.php");
 				$("#book").load("book.php");
 				$("#login").load("login.php");
+				$("#stats").load("stats.php");
+
 
 		  	});
 
 		  </script>
+
+		<style>
+		    .chart{
+		    	width: 700px; 
+		    	height: 300px;
+			    display: block;
+			    visibility: visible;
+			}
+		</style>
 
 	</head>
 	<body>

@@ -2,12 +2,6 @@
 	include("register-node.php");
 ?>
 <style type="text/css">
-    #temp-chart{
-	    width: 700px; 
-	    height: 300px;
-	    display: block;
-	    visibility: visible;
-	}
 	body{
 	    font-family: verdana;
 	}
@@ -16,7 +10,8 @@
 <h2> Temperature Statistics </h2>
 
 <script> console.log("stats loaded"); 
-	showTemperature();
+	
+	setTimeout(showTemperature(),2000);
 </script>
 
 <p id="local-conditions-text-data">It is currently 
@@ -27,6 +22,6 @@
 </p>
 
 
-<div id="temp-chart">
+<div id="temp-chart" class="chart">
 
 </div>
