@@ -416,7 +416,7 @@ function get_client_ip() {
 			
 
 			$( "#temperature-inside" ).css({
-				"color" : "#00A8F0",
+				"color" : "#F0A400",
 				"font-size" : "18px" 
 			});
 			

@@ -8,7 +8,7 @@
 
     <script>
 
-    	function drawHouseImage(){
+function drawHouseImage(){
     		//start drawing image to display temperature in graphical form
 	    	var canvas = document.getElementById('house-chart');
 	      	var context = canvas.getContext('2d');
@@ -29,30 +29,29 @@
 		    context.fill();
 
 		    //draw a cloud
-		     // begin custom shape
 	      	context.beginPath();
-	      	context.moveTo(120, 80);
-	      	context.lineTo(5,5);
-	      	//context.bezierCurveTo();
-	      	/*
-	      	context.bezierCurveTo(130, 100, 130, 150, 230, 150); //cx1, cy1, cx2, cy2, x, y
-	      	context.bezierCurveTo(250, 180, 320, 180, 340, 150);
-	      	context.bezierCurveTo(420, 150, 420, 120, 390, 100);
-	      	context.bezierCurveTo(430, 40, 370, 30, 340, 50);
-	      	context.bezierCurveTo(320, 5, 250, 20, 250, 50);
-	      	context.bezierCurveTo(200, 5, 150, 20, 170, 80);
-			*/
+	      	context.moveTo(110, 30);
+	      	//do all the curves
+	      	context.quadraticCurveTo(123, 2, 130, 30);
+            context.quadraticCurveTo(153, 10, 160, 30);
+            context.quadraticCurveTo(193, 40, 160, 55);
+            context.quadraticCurveTo(155, 75, 140, 55);
+            context.quadraticCurveTo(125, 80, 110, 55);
+            context.quadraticCurveTo(80, 50, 110, 30);     
 
-	      	// complete custom shape
-	      	context.closePath();
 	      	context.lineWidth = 1;
 	      	context.fill();
 	      	context.stroke();
 
-
-		    //draw the sun
-
 		    //draw temperatures & inside humidity
+		    var currentOut = localStorage.getItem("outsideNow").substr(localStorage.getItem("outsideNow").indexOf(",")+1); 
+			var currentIn = localStorage.getItem("insideNow").substr(localStorage.getItem("insideNow").indexOf(",")+1); 
+			var currentHu = localStorage.getItem("humidNow");
+			
+
+			context.font="18px Verdana";			
+			context.fillStyle= "#F0A400";
+			context.fillText(currentIn,20,90);
 		}
 
 		drawHouseImage();
