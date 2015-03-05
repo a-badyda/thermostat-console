@@ -48,10 +48,35 @@ function drawHouseImage(){
 			var currentIn = localStorage.getItem("insideNow").substr(localStorage.getItem("insideNow").indexOf(",")+1); 
 			var currentHu = localStorage.getItem("humidNow");
 			
-
+			//inside temperature
 			context.font="18px Verdana";			
 			context.fillStyle= "#F0A400";
-			context.fillText(currentIn,20,90);
+			context.fillText(currentIn, 25, 85);
+			//icon
+			var imageTemp = new Image();
+			imageTemp.src = 'libraries/css/images/Temperature-2-icon32.png';
+			imageTemp.onload = function() {
+			  context.drawImage(imageTemp, 45, 71, 20, 15);
+			  context.drawImage(imageTemp, 140, 86, 20, 15);
+			};
+
+
+			//humidity temperature
+			context.fillStyle= "#9CA1FD";
+			context.fillText(currentHu, 25, 115);
+			//icon
+			var imageObj = new Image();
+			imageObj.src = 'libraries/css/images/Humidity-icon32px.png';
+			imageObj.onload = function() {
+			  context.drawImage(imageObj, 47, 100, 20, 15);
+			};
+
+			//outside temperature
+			context.fillStyle= "#A5BA00";
+			context.fillText(currentOut, 120, 100);
+			//icon where the inside temperature 
+			
+
 		}
 
 		drawHouseImage();
