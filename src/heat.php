@@ -97,31 +97,32 @@
 			var currentHu = localStorage.getItem("humidNow");
 			
 			//inside temperature
-			context.font="18px Verdana";			
+			context.font="30px Impact";			
 			context.fillStyle= "#F0A400";
-			context.fillText(currentIn, 25, 85);
+			context.fillText(currentIn, 80, 140);
 			//icon
 			var imageTemp = new Image();
 			imageTemp.src = 'libraries/css/images/Temperature-2-icon32.png';
 			imageTemp.onload = function() {
-			  context.drawImage(imageTemp, 45, 71, 20, 15);
-			  context.drawImage(imageTemp, 140, 86, 20, 15);
+			  context.drawImage(imageTemp, 100, 115, 40, 30);
+			  context.drawImage(imageTemp, 248, 135, 40, 30);
 			};
 
-
+			
 			//humidity temperature
 			context.fillStyle= "#9CA1FD";
-			context.fillText(currentHu, 25, 115);
+			context.fillText(currentHu, 78, 180);
 			//icon
 			var imageObj = new Image();
 			imageObj.src = 'libraries/css/images/Humidity-icon32px.png';
 			imageObj.onload = function() {
-			  context.drawImage(imageObj, 47, 100, 20, 15);
+			  context.drawImage(imageObj, 105, 150, 40, 30);
 			};
 
+			
 			//outside temperature
 			context.fillStyle= "#A5BA00";
-			context.fillText(currentOut, 120, 100);
+			context.fillText(currentOut, 228, 160);
 			//icon where the inside temperature 
 			
 
