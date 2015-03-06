@@ -8,14 +8,47 @@
 
     <script>
 
-function drawHouseImage(){
-    		//start drawing image to display temperature in graphical form
-	    	var canvas = document.getElementById('house-chart');
+    	//!!! start stack overflow code !!!//
+	    var PIXEL_RATIO = (function () {
+	    	var ctx = document.getElementById('house-chart').getContext("2d"),
+	        dpr = window.devicePixelRatio || 1,
+	        bsr = ctx.webkitBackingStorePixelRatio ||
+	              ctx.mozBackingStorePixelRatio ||
+	              ctx.msBackingStorePixelRatio ||
+	              ctx.oBackingStorePixelRatio ||
+	              ctx.backingStorePixelRatio || 1;
+
+	    return dpr / bsr;
+		})();
+
+
+		createHiDPICanvas = function(w, h, ratio) {
+		    if (!ratio) { ratio = PIXEL_RATIO; }
+		    var can = document.getElementById('house-chart');
+		    can.width = w * ratio;
+		    can.height = h * ratio;
+		    can.style.width = w + "px";
+		    can.style.height = h + "px";
+		    can.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
+		    return can;
+		}
+
+		//Create canvas with the device resolution.
+		var canvas = createHiDPICanvas(300, 300);
+
+		//Create canvas with a custom resolution.
+		var myCustomCanvas = createHiDPICanvas(500, 200, 4);
+		// !!! end stack overflow code !!! ///
+
+
+		function drawHouseImage(){
+    		    		//start drawing image to display temperature in graphical form
+	    	//var canvas = document.getElementById('house-chart');
 	      	var context = canvas.getContext('2d');
 
 	      	//draw a square
 	      	context.beginPath();
-	      	context.rect(10, 70, 80, 60); //x, y, width height 
+	      	context.rect(30, 100, 140, 100); //x, y, width height 
 	      	context.fillStyle = '#B7DACB';
 	      	context.fill();
 	      	context.lineWidth = 2;
@@ -23,22 +56,37 @@ function drawHouseImage(){
 	      	context.stroke();
 
 	      	//draw a triangle
-	      	context.moveTo(0,70);
-		    context.lineTo(100,70);
-		    context.lineTo(50,35);
+	      	context.moveTo(10,110);
+		    context.lineTo(190,110);
+		    context.lineTo(95,35);
 		    context.fill();
 
-		    //draw a cloud
+		    //draw the first cloud
 	      	context.beginPath();
-	      	context.moveTo(110, 30);
+	      	context.moveTo(210, 30);
 	      	//do all the curves
-	      	context.quadraticCurveTo(123, 2, 130, 30);
-            context.quadraticCurveTo(153, 10, 160, 30);
-            context.quadraticCurveTo(193, 40, 160, 55);
-            context.quadraticCurveTo(155, 75, 140, 55);
-            context.quadraticCurveTo(125, 80, 110, 55);
-            context.quadraticCurveTo(80, 50, 110, 30);     
-
+	      	context.quadraticCurveTo(223, 2, 230, 30);
+            context.quadraticCurveTo(253, 10, 260, 30);
+            context.quadraticCurveTo(293, 40, 260, 55);
+            context.quadraticCurveTo(255, 75, 240, 55);
+            context.quadraticCurveTo(225, 80, 210, 55);
+            context.quadraticCurveTo(180, 50, 210, 30);
+            //fill the element etc.
+	      	context.lineWidth = 1;
+	      	context.fill();
+	      	context.stroke();
+            
+            //draw cloud number 2
+            context.beginPath();
+	      	context.moveTo(310, 78);
+	      	//do all the curves
+	      	context.quadraticCurveTo(323, 52, 330, 80);
+            context.quadraticCurveTo(353, 60, 360, 80);
+            context.quadraticCurveTo(393, 90, 360, 105);
+            context.quadraticCurveTo(355, 115, 340, 105);
+            context.quadraticCurveTo(325, 120, 310, 105);
+            context.quadraticCurveTo(280, 100, 310, 80);
+            //fill the element etc.
 	      	context.lineWidth = 1;
 	      	context.fill();
 	      	context.stroke();
