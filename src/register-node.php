@@ -403,48 +403,58 @@ function get_client_ip() {
 		    });
 		}
 
-		function showTemperature(){
-			console.log(localStorage.getItem("insideNow")+ " "+ localStorage.getItem("outsideNow"));
+
+		function textDataTemperature(){
+
 			//append temperature data
 			var currentOut = localStorage.getItem("outsideNow").substr(localStorage.getItem("outsideNow").indexOf(",")+1); 
 			var currentIn = localStorage.getItem("insideNow").substr(localStorage.getItem("insideNow").indexOf(",")+1); 
 			var currentHu = localStorage.getItem("humidNow");
 			
-
+			var countFound = 0;
 			$(".local-conditions-text-data").each( function(){
-				$(this).append("It is currently"+ 
-					"<span class=\"temperature-inside\"></span>&degC inside, and"+ 
-					"<span class=\"temperature-outside\"></span>&degC outside."+ 
-					"The room humidity is at <span class=\"humidity-now\"></span>%."
-				);
+				countFound++;
+				if(countFound>1){
+					$(".local-conditions-text-data").each( function(){
 
-				console.log($( ".humidity-now" ).length );
+						$(this).append("It is currently "+ 
+							"<span class=\"temperature-inside\">"+
+							currentIn+"</span>&degC inside, and "+ 
+							"<span class=\"temperature-outside\">"+
+							currentOut+"</span>&degC outside."+ 
+							"The room humidity is at <span class=\"humidity-now\">"+
+							currentHu+"</span>%."
+						);
 
-				var str = $("humidity-now").text();
-				var res = str.replace($( ".humidity-now" ).text() , currentHu);
 
-					$( ".temperature-inside" ).append( currentIn );
-					$( ".temperature-outside" ).append( currentOut );	
-					var str = $("humidity-now").text();
-					var res = str.replace($( ".humidity-now" ).text() , currentHu);
-				
+						$( ".temperature-inside" ).css({
+							"color" : "#F0A400",
+							"font-size" : "18px" 
+						});
+						
+						$( ".temperature-outside" ).css({
+							"color": "#A5BA00", 
+							"font-size" : "18px"
+						});
 
-				$( ".temperature-inside" ).css({
-					"color" : "#F0A400",
-					"font-size" : "18px" 
-				});
-				
-				$( ".temperature-outside" ).css({
-					"color": "#A5BA00", 
-					"font-size" : "18px"
-				});
+						$( ".humidity-now" ).css({
+							"color" : "#9CA1FD",
+							"font-size" : "18px" 
+						});
 
-				$( ".humidity-now" ).css({
-					"color" : "#9CA1FD",
-					"font-size" : "18px" 
-				});
+					});
+				}
 			});
 
+		}
+
+
+		function showTemperature(){
+
+
+			$(".local-conditions-text-data").each( function(){
+				
+			});
 
 
 			//apply some style to the strings to make it stand out more

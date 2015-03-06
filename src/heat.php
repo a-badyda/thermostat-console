@@ -3,7 +3,7 @@
 ?>
 <script>
 	console.log("heating loaded"); 
-
+	textDataTemperature();
 </script>
 
     <script>
@@ -131,10 +131,12 @@
 
     </script>
 
-<canvas id="house-chart" class="chart"></canvas>
 
-<p class="local-conditions-text-data">
-</p>
+<h2> Heating Control </h2>
+
+<p class="local-conditions-text-data"></p>
+
+<canvas id="house-chart" class="chart"></canvas>
 
 
 

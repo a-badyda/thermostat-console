@@ -10,13 +10,12 @@
 <h2> Temperature Statistics </h2>
 
 <script> console.log("stats loaded"); 
+
+	textDataTemperature();
+
 	
 </script>
 
-<p class="local-conditions-text-data">
-</p>
+<p class="local-conditions-text-data"></p>
 
-
-<div id="temp-chart" class="chart">
-
-</div>
+<div id="temp-chart" class="chart"></div>

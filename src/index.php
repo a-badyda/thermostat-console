@@ -24,14 +24,13 @@
 			$(function() {
 				$("#tabs").tabs({selected: 'stats.php' });
 
-				//begin loading in parts of the site 
-				$("#heat").load("heat.php");
-				$("#book").load("book.php");
-				$("#login").load("login.php");
-				$("#stats").load("stats.php");
-
-
+				//begin loading in parts of the site
+				$("#heat").load("heat.php"),
+				$("#book").load("book.php"),
+				$("#login").load("login.php"),
+				$("#stats").load("stats.php") 
 		  	});
+
 
 		  </script>
 
