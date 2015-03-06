@@ -3,7 +3,7 @@
 ?>
 <script>
 	console.log("heating loaded"); 
-	showTemperature();
+
 </script>
 
     <script>
@@ -133,11 +133,7 @@
 
 <canvas id="house-chart" class="chart"></canvas>
 
-<p id="local-conditions-text-data">It is currently 
-	<span id="temperature-inside"></span>&degC inside, 
-	and 
-	<span id="temperature-outside"></span>&degC outside.
-	The room humidity is at <span id="humidity-now"></span>%.
+<p class="local-conditions-text-data">
 </p>
 
 

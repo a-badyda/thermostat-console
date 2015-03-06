@@ -410,24 +410,39 @@ function get_client_ip() {
 			var currentIn = localStorage.getItem("insideNow").substr(localStorage.getItem("insideNow").indexOf(",")+1); 
 			var currentHu = localStorage.getItem("humidNow");
 			
-			$( "#temperature-inside" ).append( currentIn );
-			$( "#temperature-outside" ).append( currentOut );	
-			$( "#humidity-now" ).append( currentHu );
-			
 
-			$( "#temperature-inside" ).css({
-				"color" : "#F0A400",
-				"font-size" : "18px" 
-			});
-			
-			$( "#temperature-outside" ).css({
-				"color": "#A5BA00", 
-				"font-size" : "18px"
-			});
+			$(".local-conditions-text-data").each( function(){
+				$(this).append("It is currently"+ 
+					"<span class=\"temperature-inside\"></span>&degC inside, and"+ 
+					"<span class=\"temperature-outside\"></span>&degC outside."+ 
+					"The room humidity is at <span class=\"humidity-now\"></span>%."
+				);
 
-			$( "#humidity-now" ).css({
-				"color" : "#9CA1FD",
-				"font-size" : "18px" 
+				console.log($( ".humidity-now" ).length );
+
+				var str = $("humidity-now").text();
+				var res = str.replace($( ".humidity-now" ).text() , currentHu);
+
+					$( ".temperature-inside" ).append( currentIn );
+					$( ".temperature-outside" ).append( currentOut );	
+					var str = $("humidity-now").text();
+					var res = str.replace($( ".humidity-now" ).text() , currentHu);
+				
+
+				$( ".temperature-inside" ).css({
+					"color" : "#F0A400",
+					"font-size" : "18px" 
+				});
+				
+				$( ".temperature-outside" ).css({
+					"color": "#A5BA00", 
+					"font-size" : "18px"
+				});
+
+				$( ".humidity-now" ).css({
+					"color" : "#9CA1FD",
+					"font-size" : "18px" 
+				});
 			});
 
 
