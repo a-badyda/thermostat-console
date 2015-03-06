@@ -35,7 +35,7 @@
 		  </script>
 
 		<style>
-		    .chart{
+		    #temp-chart{
 		    	width: 700px; 
 		    	height: 300px;
 			    display: block;
