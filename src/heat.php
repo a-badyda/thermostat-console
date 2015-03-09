@@ -128,15 +128,19 @@
 
 		var context = document.getElementById('thermostat-chart').getContext('2d');
 
-      	//draw a square
-      	context.beginPath();
-      	context.rect(50, 50, 50, 50); //x, y, width height 
-      	context.fillStyle = 'red';
-      	context.fill();
-      	context.lineWidth = 2;
-      	context.strokeStyle = 'red';
-      	context.stroke();
+		//draw a circle
+      	context.arc( 230, 70, 70, 0, Math.PI * 2);
+		context.fillStyle = "#899EA3";
+		context.fill();
 
+		//draw the pointer (diamond shaped)
+		//draw a triangle
+      	//context.moveTo(230,110);
+	    context.lineTo(230,110);
+	    //context.lineTo(295,190);
+	    context.strokeStyle = "#FFF";
+	    context.fill();
+	    context.stroke();
 	}
 
 	drawThermostat();
@@ -152,3 +156,5 @@
 
 <canvas id="thermostat-chart" class="chart"></canvas>
 
+<br /><br /><br />
+<div id="heating-data"></div>
