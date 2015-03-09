@@ -9,7 +9,10 @@
 	}
 	#thermostat-chat{
 		float:right;
-		width:10px;
+		width:300px;
+		height:300px;
+
+    	border:1px solid red;
 	}
 
 </style>
@@ -173,7 +176,7 @@
 	    h = img.height / 2;
 	    draw();
 	}
-	img.src = "http://s12.postimg.org/k0c266hql/thermostat_knob.png";
+	img.src = "libraries/css/images/thermostat-knob.png";
 
 
 	function draw() {
