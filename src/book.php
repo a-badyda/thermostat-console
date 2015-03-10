@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='utf-8' />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href='libraries/css/fullcalendar.css' rel='stylesheet' />
 <link href='libraries/css/fullcalendar.print.css' rel='stylesheet' media='print' />
 
@@ -10,6 +10,7 @@
 <script>
 
 	$(document).ready(function() {
+
 		
 		$('#calendar').fullCalendar({
 			header: {
@@ -17,8 +18,8 @@
 				center: 'title',
 				right: 'month,basicWeek,basicDay'
 			},
-			defaultDate: '2015-02-12',
-			editable: true,
+			//defaultDate: '2015-02-12',
+			editable: false,
 			eventLimit: true, // allow "more" link when too many events
 			events: [
 				{
@@ -77,6 +78,16 @@
 				}
 			]
 		});
+
+		
+		//real quick function to run to get rid of a stupid error
+		$("button").click( function(){
+ 			var weekString = $(document).find(".fc-center").text();
+			console.log(weekString);
+			weekString = weekString.replace("â€”", "to");
+			$(document).find(".fc-center").find("h2").text(weekString);
+		});
+
 		
 	});
 
@@ -91,7 +102,7 @@
 	}
 
 	#calendar {
-		max-width: 900px;
+		max-width: 600px;
 		margin: 0 auto;
 	}
 
