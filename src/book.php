@@ -5,9 +5,7 @@
 <link href='libraries/css/fullcalendar.css' rel='stylesheet' />
 <link href='libraries/css/fullcalendar.print.css' rel='stylesheet' media='print' />
 
-<script src='libraries/moment.min.js'></script>
-<script src='libraries/jquery.min.js'></script>
-<script src='libraries/fullcalendar.min.js'></script>
+
 
 <script>
 
