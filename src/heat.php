@@ -89,8 +89,9 @@ function drawRotationHandle(withFill) {
 	function handleMouseDown(e) {
 	    mouseX = parseInt(e.clientX - offsetX);
 	    mouseY = parseInt(e.clientY - offsetY);
-	    drawRotationHandle(false);
+	    drawRotationHandle(true);
 	    isDown = ctx.isPointInPath(mouseX, mouseY);
+	    console.log(mouseX+ " "+mouseY);
 	    console.log(isDown);
 	}
 
