@@ -177,6 +177,7 @@
 	    ctx.translate(cx, cy);
 	    ctx.rotate(r);
 	    ctx.drawImage(img, 0, 0, img.width, img.height, -w / 2, -h / 2, w, h);
+	    
 	    ctx.restore();
 	}
 
@@ -210,7 +211,10 @@
 	    r = angle*6;
 	    //transform angle to rad again and move to input fields val
 	    console.log(r);
-	    draw();
+	    //add boundaries to turning 
+	    if(r < 4.5 && r > (-0.2)){
+	    	draw();
+	    }
 	}
 
 	$("#thermostat-chart").mousedown(function (e) {
