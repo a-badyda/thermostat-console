@@ -7,6 +7,9 @@
 		float:left;
 		width: 10px;
 	}
+	table{
+		float:center;
+	}
 
 </style>
 
@@ -206,6 +209,7 @@
 	    var angle = Math.atan2(dy, dx);
 	    r = angle*6;
 	    //transform angle to rad again and move to input fields val
+	    console.log(r);
 	    draw();
 	}
 
@@ -234,9 +238,13 @@
 
 <canvas id="thermostat-chart" class="chart"></canvas>
 
-<!-- reduce space between this && thermostat-chart -->
+<!-- reduce space between this && thermostat-chart
+	put into table to even out for right align? 
+-->
 <form id="heat-data">
-
-	<input type="text" name="newHeat" maxlenght="2" pattern="[1-40-9]{2}" size="3" value="55" />
-	<input type="submit" value="Submit"/>
+ <table> <tr>
+	<td>Enter Temperature: </td>
+	<td><input type="text" name="newHeat" maxlenght="2" pattern="[1-4][0-9]" size="3" value="" /></td>
+	<td><input type="submit" value="Submit"/></td>
+ </table></tr>
 </form>
