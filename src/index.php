@@ -24,13 +24,23 @@
 
 		<script>
 			$(function() {
-				$("#tabs").tabs({selected: 'stats.php' });
+
 
 				//begin loading in parts of the site
-				$("#heat").load("heat.php"),
-				$("#book").load("book.php"),
-				$("#login").load("login.php"),
-				$("#stats").load("stats.php") 
+				$("#heat").load("heat.php");
+				$("#book").load("book.php");
+				$("#login").load("login.php");
+				$("#stats").load("stats.php"); 
+
+
+				$("#tabs").tabs({
+					//never activated for some reason
+					activate: function(event, ui){
+						console.log("TEST");
+						//log called but not registering fullCalendar request - undefined
+						//$("#calendar").fullCalendar('render');
+					}
+				});
 		  	});
 
 
