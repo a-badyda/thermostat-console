@@ -10,6 +10,13 @@
 	table{
 		float:center;
 	}
+	td{
+		float:center;
+	}
+	div{
+		float:center;
+	}
+	
 
 </style>
 
@@ -61,7 +68,7 @@
 	}
 
 	//Create canvas with the device resolution.
-	var canvas = CreateHiDPICanvas(300, 300);
+	var canvas = CreateHiDPICanvas(300, 200);
 	
 	// !!! end stack overflow code !!! ///
 
@@ -143,7 +150,7 @@
 	//start drawing the thermostat
 	
 	function DrawThermostat(){
-		var canvas = CreateHiDPICanvas(300, 300, 1);
+		var canvas = CreateHiDPICanvas(300, 200, 1);
 		var ctx = canvas.getContext("2d");
 
 		var canvasOffset = $("#thermostat-chart").offset();
@@ -212,9 +219,19 @@
 		    r = angle*6;
 		    //transform angle to rad again and move to input fields val
 		    //add boundaries to turning 
-		    if(r < 4.5 && r > 0){
-		    	console.log(r);
+		    if(r < 5.5 && r > 0){
+		    	
+		    	temp= (r+1)*5;
 		    	draw();
+		    	
+		    	//normalize values to only 7-32 //currently hard-coded
+		    	if(temp<7){temp=7}
+		    	else if(temp>32){temp=32}
+		    	else{}
+
+		    	//print out in the text box
+		    	$(document).find("#newHeat").val(Math.ceil(temp));
+
 		    }
 		}
 
@@ -254,32 +271,29 @@
 	console.log("heating loaded"); 
 </script>
 
+<div style="float:center">
+	<h2> Heating Control </h2>
 
-<h2> Heating Control </h2>
+	<p class="local-conditions-text-data"></p>
 
-<p class="local-conditions-text-data"></p>
+	<canvas id="house-chart"></canvas>
 
-<canvas id="house-chart" class="chart"></canvas>
+	<canvas id="thermostat-chart"></canvas>
 
-<canvas id="thermostat-chart" class="chart"></canvas>
-
-<!-- reduce space between this && thermostat-chart
-	put into table to even out for right align? 
--->
-<form id="heat-data">
- <table> 
- 	
- 	<tr>
- 		<td>The current temperature is <span id="currentH"> </span>&degC.</td>
- 		<td>Maxium temperature is <span id="maxH"> </span>&degC.</td>
- 		<td>Minimum temperature is <span id="minH"> </span>&degC.</td>
- 	</tr>
- 	
- 	<tr>	
-		<td>Enter Temperature: </td>
-		<td><input type="text" name="newHeat" maxlenght="2" 
-			size="3" value="" /></td>
-		<td><input type="submit" value="Submit"/></td>
-	</tr>
- </table>
-</form>
+	<form id="heat-data">
+	 <table> 
+	 	
+	 	<tr>
+	 		<td>The thermostat is set to <span id="currentH"> </span>&degC.</td>
+	 		<td>Maxium temperature is <span id="maxH"> </span>&degC.</td>
+	 		<td>Minimum temperature is <span id="minH"> </span>&degC.</td>
+	 	</tr>
+	 	<tr>	
+			<td>Enter Temperature: </td>
+			<td><input id="newHeat" type="text" name="newHeat" maxlenght="2" 
+				size="3" value="" /></td>
+			<td><input type="submit" value="Submit"/></td>
+		</tr>
+	 </table>
+	</form>
+</div>

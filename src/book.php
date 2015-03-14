@@ -82,7 +82,6 @@
 		//real quick function to run to get rid of a stupid error
 		$("button").click( function(){
  			var weekString = $(document).find(".fc-center").text();
-			console.log(weekString);
 			weekString = weekString.replace("â€”", "to");
 			$(document).find(".fc-center").find("h2").text(weekString);
 		});
