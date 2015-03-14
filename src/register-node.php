@@ -1,26 +1,26 @@
 <?php
 //for testing purposes only, delete on release 
-ini_set('display_errors',1);  
+ini_set("display_errors",1);  
 error_reporting(E_ALL);
 
 //from stack overflow
 //Function to get the client IP address
 function get_client_ip() {
-    $ipaddress = '';
-    if (getenv('HTTP_CLIENT_IP'))
-        $ipaddress = getenv('HTTP_CLIENT_IP');
-    else if(getenv('HTTP_X_FORWARDED_FOR'))
-        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-    else if(getenv('HTTP_X_FORWARDED'))
-        $ipaddress = getenv('HTTP_X_FORWARDED');
-    else if(getenv('HTTP_FORWARDED_FOR'))
-        $ipaddress = getenv('HTTP_FORWARDED_FOR');
-    else if(getenv('HTTP_FORWARDED'))
-       $ipaddress = getenv('HTTP_FORWARDED');
-    else if(getenv('REMOTE_ADDR'))
-        $ipaddress = getenv('REMOTE_ADDR');
+    $ipaddress = "";
+    if (getenv("HTTP_CLIENT_IP"))
+        $ipaddress = getenv("HTTP_CLIENT_IP");
+    else if(getenv("HTTP_X_FORWARDED_FOR"))
+        $ipaddress = getenv("HTTP_X_FORWARDED_FOR");
+    else if(getenv("HTTP_X_FORWARDED"))
+        $ipaddress = getenv("HTTP_X_FORWARDED");
+    else if(getenv("HTTP_FORWARDED_FOR"))
+        $ipaddress = getenv("HTTP_FORWARDED_FOR");
+    else if(getenv("HTTP_FORWARDED"))
+       $ipaddress = getenv("HTTP_FORWARDED");
+    else if(getenv("REMOTE_ADDR"))
+        $ipaddress = getenv("REMOTE_ADDR");
     else
-        $ipaddress = 'UNKNOWN';
+        $ipaddress = "UNKNOWN";
     return $ipaddress;
 }
 
@@ -33,7 +33,7 @@ function get_client_ip() {
 <script type="text/javascript">
 
 	//bunch of global vars for now 
-	var servIP = <?php print_r( "\"". $_SERVER['SERVER_ADDR'] ."\"");  ?>;
+	var servIP = <?php print_r( "\"". $_SERVER["SERVER_ADDR"] ."\"");  ?>;
 	var localIP= <?php print_r( "\"". get_client_ip() ."\"");  ?>;
 
 	var apiKey= "777";
@@ -114,11 +114,11 @@ function get_client_ip() {
 	function RegisterNode(){ //except i cant test it 
 	    
 	    $.ajax({
-	    	url: 'http://'+servIP+
-	    	 '/emoncms/register/register.json?apikey='+apiKey+
-	    	 '&nodeip='+localIP+'&timeout='+timeout+'',
+	    	url: "http://"+servIP+
+	    	 "/emoncms/register/register.json?apikey="+apiKey+
+	    	 "&nodeip="+localIP+"&timeout="+timeout+"",
 
-	    	type: 'post',
+	    	type: "post",
 	    	async: true, cache: false,
 	    	
 	    	success: function(data){
@@ -168,13 +168,13 @@ function get_client_ip() {
 	function RegisterAttribute(groupID, attrID, attrNumber, attrDefault){
 
 		$.ajax({
-			url: 'http://'+servIP+
-			'/emoncms/register/setup.json?apikey='+apiKey+
-			'&node='+nodeID+
-			'&json={['+groupID+']['+attrID+']['+attrNumber+'],['+attrDefault+']}'+
-			'&timeout='+timeout+'',
+			url: "http://"+servIP+
+			"/emoncms/register/setup.json?apikey="+apiKey+
+			"&node="+nodeID+
+			"&json={["+groupID+"]["+attrID+"]["+attrNumber+"],["+attrDefault+"]}"+
+			"&timeout="+timeout+"",
 
-	    	type: 'post',
+	    	type: "post",
 	    	async: true, cache: false,
 	    	
 	    	success: function(data){
@@ -201,18 +201,18 @@ function get_client_ip() {
 		var 
 			groupID = "0x0201",
 			attrID = "0x0000",
-			attrNumber = "0x0000";	//only thing that's diff from call 2 
+			attrNumber = "0x0000";	//only thing that"s diff from call 2 
 
 		$.ajax({
 			/*
-			url: 'http://'+servIP+'/emoncms/feed/value.json?apikey='+apiKey+
-			 '&node='+nodeID+
-			 '&id='+groupID+''+attrID+''+attrNumber+''+nodeID+
-			 '&timeout='+timeout+'',
+			url: "http://"+servIP+"/emoncms/feed/value.json?apikey="+apiKey+
+			 "&node="+nodeID+
+			 "&id="+groupID+""+attrID+""+attrNumber+""+nodeID+
+			 "&timeout="+timeout+"",
 			*/
-			url: 'http://'+servIP+'/thermostat-console/src/test-data.php',
+			url: "http://"+servIP+"/thermostat-console/src/test-data.php",
 
-			type:'post',
+			type:"post",
 			async: true, cache: false,
 
 			success: function(data){
@@ -239,14 +239,14 @@ function get_client_ip() {
 
 		$.ajax({
 			/*
-			url: 'http://'+servIP+'/emoncms/feed/value.json?apikey='+apiKey+
-			 '&node='+nodeID+
-			 '&id='+groupID+''+attrID+''+attrNumber+''+nodeID+
-			 '&timeout='+timeout+'',
+			url: "http://"+servIP+"/emoncms/feed/value.json?apikey="+apiKey+
+			 "&node="+nodeID+
+			 "&id="+groupID+""+attrID+""+attrNumber+""+nodeID+
+			 "&timeout="+timeout+"",
 			*/
-			url: 'http://'+servIP+'/thermostat-console/src/test-data1.php',
+			url: "http://"+servIP+"/thermostat-console/src/test-data1.php",
 
-			type:'post',
+			type:"post",
 			async: true, cache: false,
 
 			success: function(data){
@@ -268,7 +268,7 @@ function get_client_ip() {
 	function GraphChart(inside, outside){
 
 		var markerFormatter = function(obj){
-			return ' '+(obj.y).toFixed(0) + '%';
+			return " "+(obj.y).toFixed(0) + "%";
 		}
 
 		// Draw the graph
@@ -295,8 +295,8 @@ function get_client_ip() {
 				    showLabels: true,
 				    showMinorLabels: true,
 				    labelsAngle: 0,
-				    title: 'Time',
-				    titleAngle: '0',
+				    title: "Time",
+				    titleAngle: "0",
 				    noTicks: 12,
 				    //e is a modifier on the time - start at 24h ago +e
 				    //if more than 24 (new day) elapse back to 0 (-24 on number)
@@ -316,8 +316,8 @@ function get_client_ip() {
 				    showLabels: true,
 				    showMinorLabels: true,
 				    labelsAngle: 0,
-				    //title: 'Temperature',
-				    titleAngle: '90',
+				    //title: "Temperature",
+				    titleAngle: "90",
 				   	//min: -20,
 				    //max: 40,
 				    noTicks: 10,
@@ -337,15 +337,15 @@ function get_client_ip() {
 				   	},
 				   	trackDecimals: 0,
 				   	relative: false,
-				   	position: 'se',
-				   	lineColor: '#ffff00',
+				   	position: "se",
+				   	lineColor: "#ffff00",
 				   	sensibility: 2,
 				   	trackY: true,
 				   	radius: 3,
 				   	margin: 5,
-				   	mouseTextColor: '#ffffff',
-				   	mouseBGColor: '#000000',
-				   	boxAlpha: '0.8',
+				   	mouseTextColor: "#ffffff",
+				   	mouseBGColor: "#000000",
+				   	boxAlpha: "0.8",
 				   	fillColor: null,
 				   	fillOpacity: 0.8   
 				},
@@ -366,14 +366,14 @@ function get_client_ip() {
 
 		$.ajax({
 			/*
-			url: 'http://'+servIP+'/emoncms/feed/value.json?apikey='+apiKey+
-			 '&node='+nodeID+
-			 '&id='+groupID+''+attrID+''+attrNumber+''+nodeID+
-			 '&timeout='+timeout+'',
+			url: "http://"+servIP+"/emoncms/feed/value.json?apikey="+apiKey+
+			 "&node="+nodeID+
+			 "&id="+groupID+""+attrID+""+attrNumber+""+nodeID+
+			 "&timeout="+timeout+"",
 			*/
-			url: 'http://'+servIP+'/thermostat-console/src/test-data2.php',
+			url: "http://"+servIP+"/thermostat-console/src/test-data2.php",
 
-			type:'post',
+			type:"post",
 			async: true, cache: false,
 
 			success: function(data){
@@ -392,8 +392,62 @@ function get_client_ip() {
 	    });
 	}
 
+	function RequestMaxMinHeat(){
+		
+		var 
+			groupID = "0x0201",
+			attrID = "0x0000",
+			attrNumber = "0x0003";	
 
-	function textDataTemperature(){
+		$.ajax({
+			/*
+			url: "http://"+servIP+"/emoncms/feed/value.json?apikey="+apiKey+
+			 "&node="+nodeID+
+			 "&id="+groupID+""+attrID+""+attrNumber+""+nodeID+
+			 "&timeout="+timeout+"",
+			*/
+			url: "http://"+servIP+"/thermostat-console/src/test-MaxHeat.php",
+
+			type:"post",
+			async: true, cache: false,
+
+			success: function(data){
+	    		storeData = data;
+	    		
+	    		attrNumber = "0x0004";
+	    		$.ajax({
+	    			url: "http://"+servIP+"/thermostat-console/src/test-MinHeat.php",
+	    			type: "post",
+	    			async: true, cache:false,
+
+	    			success: function(data){
+	    				localStorage.setItem("minHeat", data);
+	    				localStorage.setItem("maxHeat", storeData);
+
+	    				console.log("Max and Min heat now registered in local storage");
+
+	    			},
+	    			error: function(data){
+						console.log("ERROR 10 - Max and Min heat not fetched");
+	    			}
+
+	    		})
+
+	    	}, 
+
+	    	error: function(data){
+	    		console.log("ERROR 10 - Max and Min heat not fetched");
+	    	},
+	    	done: function(data){
+	    		//callback(storeData);
+	    		//return storeData;
+	    	}
+	    });
+	}
+
+
+	//end of requests
+	function TextDataTemperature(){
 
 		//append temperature data
 		var currentOut = localStorage.getItem("outsideNow").substr(localStorage.getItem("outsideNow").indexOf(",")+1); 
@@ -437,18 +491,6 @@ function get_client_ip() {
 
 	}
 
-
-	function showTemperature(){
-
-
-		$(".local-conditions-text-data").each( function(){
-			
-		});
-
-
-		//apply some style to the strings to make it stand out more
-
-	}
 		
 </script>
 </html>

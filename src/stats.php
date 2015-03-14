@@ -11,7 +11,7 @@
 
 <script> console.log("stats loaded"); 
 
-	textDataTemperature();
+	TextDataTemperature();
 
 	
 </script>

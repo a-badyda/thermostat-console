@@ -19,8 +19,8 @@
 		<script src="libraries/jquery-1.11.2.js"></script>
 	  	<script src="libraries/jquery-ui.js"></script>
 	  	<script src="libraries/flotr2.min.js"></script>
-		<script src='libraries/moment.min.js'></script>
-		<script src='libraries/fullcalendar.min.js'></script>
+		<script src="libraries/moment.min.js"></script>
+		<script src="libraries/fullcalendar.min.js"></script>
 
 		<script>
 			$(function() {
@@ -36,9 +36,9 @@
 				$("#tabs").tabs({
 					//never activated for some reason
 					activate: function(event, ui){
-						console.log("TEST");
+						//console.log(event);
 						//log called but not registering fullCalendar request - undefined
-						//$("#calendar").fullCalendar('render');
+						$("#calendar").fullCalendar("render");
 					}
 				});
 		  	});

@@ -14,11 +14,11 @@
 </style>
 
 <script>	
-	textDataTemperature();
+	TextDataTemperature();
 
 	//!!! start stack overflow code !!!//
     var PIXEL_RATIO = (function () {
-    	var ctx = document.getElementById('house-chart').getContext("2d"),
+    	var ctx = document.getElementById("house-chart").getContext("2d"),
         dpr = window.devicePixelRatio || 1,
         bsr = ctx.webkitBackingStorePixelRatio ||
               ctx.mozBackingStorePixelRatio ||
@@ -30,7 +30,7 @@
 	})();
 
 	var PIXEL_RATIO1 = (function () {
-    	var ctx = document.getElementById('thermostat-chart').getContext("2d"),
+    	var ctx = document.getElementById("thermostat-chart").getContext("2d"),
         dpr = window.devicePixelRatio || 1,
         bsr = ctx.webkitBackingStorePixelRatio ||
               ctx.mozBackingStorePixelRatio ||
@@ -42,15 +42,15 @@
 	})();
 
 
-	createHiDPICanvas = function(w, h, which_canvas) {
+	CreateHiDPICanvas = function(w, h, which_canvas) {
 	    
 	    if(!which_canvas){
 	    	ratio = PIXEL_RATIO; 
-	    	var can = document.getElementById('house-chart');
+	    	var can = document.getElementById("house-chart");
 	    }
 	    else{
 	    	ratio = PIXEL_RATIO1;
-	    	var can = document.getElementById('thermostat-chart');
+	    	var can = document.getElementById("thermostat-chart");
 	    }
 	    can.width = w * ratio;
 	    can.height = h * ratio;
@@ -61,23 +61,23 @@
 	}
 
 	//Create canvas with the device resolution.
-	var canvas = createHiDPICanvas(300, 300);
+	var canvas = CreateHiDPICanvas(300, 300);
 	
 	// !!! end stack overflow code !!! ///
 
 
-	function drawHouseImage(){
+	function DrawHouseImage(){
 		//start drawing image to display temperature in graphical form
-    	//var canvas = document.getElementById('house-chart');
-      	var context = canvas.getContext('2d');
+    	//var canvas = document.getElementById("house-chart");
+      	var context = canvas.getContext("2d");
 
       	//draw a square
       	context.beginPath();
       	context.rect(30, 100, 140, 100); //x, y, width height 
-      	context.fillStyle = '#B7DACB';
+      	context.fillStyle = "#B7DACB";
       	context.fill();
       	context.lineWidth = 2;
-      	context.strokeStyle = '#B7DACB';
+      	context.strokeStyle = "#B7DACB";
       	context.stroke();
 
       	//draw a triangle
@@ -113,7 +113,7 @@
 		context.fillText(currentIn, 80, 140);
 		//icon
 		var imageTemp = new Image();
-		imageTemp.src = 'libraries/css/images/Temperature-2-icon32.png';
+		imageTemp.src = "libraries/css/images/Temperature-2-icon32.png";
 		imageTemp.onload = function() {
 		  context.drawImage(imageTemp, 100, 115, 40, 30);
 		  context.drawImage(imageTemp, 248, 135, 40, 30);
@@ -125,7 +125,7 @@
 		context.fillText(currentHu, 78, 180);
 		//icon
 		var imageObj = new Image();
-		imageObj.src = 'libraries/css/images/Humidity-icon32px.png';
+		imageObj.src = "libraries/css/images/Humidity-icon32px.png";
 		imageObj.onload = function() {
 		  context.drawImage(imageObj, 105, 150, 40, 30);
 		};
@@ -138,97 +138,111 @@
 		
 	}
 
-	drawHouseImage();
+	DrawHouseImage();
 
 	//start drawing the thermostat
-	var canvas = createHiDPICanvas(300, 300, 1);
-	var ctx = canvas.getContext("2d");
+	
+	function DrawThermostat(){
+		var canvas = CreateHiDPICanvas(300, 300, 1);
+		var ctx = canvas.getContext("2d");
 
-	var canvasOffset = $("#thermostat-chart").offset();
-	var offsetX = canvasOffset.left;
-	var offsetY = canvasOffset.top;
+		var canvasOffset = $("#thermostat-chart").offset();
+		var offsetX = canvasOffset.left;
+		var offsetY = canvasOffset.top;
 
-	var startX;
-	var startY;
-	var isDown = false;
+		var startX;
+		var startY;
+		var isDown = false;
 
-	var cx = canvas.width / 2;
-	var cy = canvas.height / 2;
-	var w;
-	var h;
-	var r = 0;
+		var cx = canvas.width / 2;
+		var cy = canvas.height / 2;
+		var w;
+		var h;
+		var r = 0;
 
-	var img = new Image();
-	img.onload = function () {
-	    w = img.width / 2;
-	    h = img.height / 2;
-	    draw();
+		var img = new Image();
+		img.onload = function () {
+		    w = img.width / 2;
+		    h = img.height / 2;
+		    draw();
+		}
+		img.src = "libraries/css/images/thermostat-knob.png";
+
+
+		function draw() {
+		    ctx.clearRect(0, 0, canvas.width, canvas.height);
+		    drawRect();
+		}
+
+		function drawRect() {
+		    ctx.save();
+		    ctx.translate(cx, cy);
+		    ctx.rotate(r);
+		    ctx.drawImage(img, 0, 0, img.width, img.height, -w / 2, -h / 2, w, h);
+
+		    ctx.restore();
+		}
+
+
+		//start handling mouse events 
+		function handleMouseDown(e) {
+		    mouseX = parseInt(e.clientX - offsetX)/2;
+		    mouseY = parseInt(e.clientY - offsetY)/2;
+		    isDown = true;	
+		}
+
+		function handleMouseUp(e) {
+		    isDown = false;
+		}
+
+		function handleMouseOut(e) {
+		    isDown = false;
+		}
+
+		function handleMouseMove(e) {
+		    if (!isDown) {
+		        return;
+		    }
+
+		    mouseX = parseInt(e.clientX - offsetX)/2;
+		    mouseY = parseInt(e.clientY - offsetY)/2;
+		    var dx = mouseX - cx;
+		    var dy = mouseY - cy;
+		    var angle = Math.atan2(dy, dx);
+		    r = angle*6;
+		    //transform angle to rad again and move to input fields val
+		    //add boundaries to turning 
+		    if(r < 4.5 && r > 0){
+		    	console.log(r);
+		    	draw();
+		    }
+		}
+
+		$("#thermostat-chart").mousedown(function (e) {
+		    handleMouseDown(e);
+		});
+		$("#thermostat-chart").mousemove(function (e) {
+		    handleMouseMove(e);
+		});
+		$("#thermostat-chart").mouseup(function (e) {
+		    handleMouseUp(e);
+		});
+		$("#thermostat-chart").mouseout(function (e) {
+		    handleMouseOut(e);
+		});
 	}
-	img.src = "libraries/css/images/thermostat-knob.png";
+
+	DrawThermostat();
 
 
-	function draw() {
-	    ctx.clearRect(0, 0, canvas.width, canvas.height);
-	    drawRect();
+	//handle max min heat call & printing 
+	function PrintmaxMinHeat(){
+		console.log(localStorage.getItem("minHeat"));
+		console.log(localStorage.getItem("maxHeat"));
 	}
 
-	function drawRect() {
-	    ctx.save();
-	    ctx.translate(cx, cy);
-	    ctx.rotate(r);
-	    ctx.drawImage(img, 0, 0, img.width, img.height, -w / 2, -h / 2, w, h);
-	    
-	    ctx.restore();
-	}
-
-
-	//start handling mouse events 
-	function handleMouseDown(e) {
-	    mouseX = parseInt(e.clientX - offsetX)/2;
-	    mouseY = parseInt(e.clientY - offsetY)/2;
-	    isDown = true;
-	    console.log(isDown);
-	}
-
-	function handleMouseUp(e) {
-	    isDown = false;
-	}
-
-	function handleMouseOut(e) {
-	    isDown = false;
-	}
-
-	function handleMouseMove(e) {
-	    if (!isDown) {
-	        return;
-	    }
-
-	    mouseX = parseInt(e.clientX - offsetX)/2;
-	    mouseY = parseInt(e.clientY - offsetY)/2;
-	    var dx = mouseX - cx;
-	    var dy = mouseY - cy;
-	    var angle = Math.atan2(dy, dx);
-	    r = angle*6;
-	    //transform angle to rad again and move to input fields val
-	    console.log(r);
-	    //add boundaries to turning 
-	    if(r < 4.5 && r > (-0.2)){
-	    	draw();
-	    }
-	}
-
-	$("#thermostat-chart").mousedown(function (e) {
-	    handleMouseDown(e);
-	});
-	$("#thermostat-chart").mousemove(function (e) {
-	    handleMouseMove(e);
-	});
-	$("#thermostat-chart").mouseup(function (e) {
-	    handleMouseUp(e);
-	});
-	$("#thermostat-chart").mouseout(function (e) {
-	    handleMouseOut(e);
-	});
+	RequestMaxMinHeat();
+	PrintmaxMinHeat();
 
 	console.log("heating loaded"); 
 </script>
@@ -246,9 +260,14 @@
 	put into table to even out for right align? 
 -->
 <form id="heat-data">
- <table> <tr>
-	<td>Enter Temperature: </td>
-	<td><input type="text" name="newHeat" maxlenght="2" pattern="[1-4][0-9]" size="3" value="" /></td>
-	<td><input type="submit" value="Submit"/></td>
- </table></tr>
+ <table> 
+ 	<!--
+ 	<tr><td> The current temperature is set to: <span id="currTempSet"> </span> </td></tr>
+ 	-->
+ 	<tr>	
+		<td>Enter Temperature: </td>
+		<td><input type="text" name="newHeat" maxlenght="2" pattern="[1-4][0-9]" size="3" value="" /></td>
+		<td><input type="submit" value="Submit"/></td>
+	</tr>
+ </table>
 </form>
