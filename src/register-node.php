@@ -412,8 +412,8 @@ function get_client_ip() {
 			async: true, cache: false,
 
 			success: function(data){
-	    		storeData = data;
-	    		
+	    		var tempMax = data;
+
 	    		attrNumber = "0x0004";
 	    		$.ajax({
 	    			url: "http://"+servIP+"/thermostat-console/src/test-MinHeat.php",
@@ -422,7 +422,7 @@ function get_client_ip() {
 
 	    			success: function(data){
 	    				localStorage.setItem("minHeat", data);
-	    				localStorage.setItem("maxHeat", storeData);
+	    				localStorage.setItem("maxHeat", tempMax);
 
 	    				console.log("Max and Min heat now registered in local storage");
 

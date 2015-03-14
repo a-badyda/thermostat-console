@@ -237,8 +237,15 @@
 
 	//handle max min heat call & printing 
 	function PrintmaxMinHeat(){
-		console.log(localStorage.getItem("minHeat"));
-		console.log(localStorage.getItem("maxHeat"));
+		//max&min heat exists 
+		$(document).find("#maxH").text(localStorage.getItem("maxHeat"));
+		$(document).find("#maxH").css("color","red");
+
+		$(document).find("#minH").text(localStorage.getItem("minHeat"));
+		$(document).find("#minH").css("color","blue");
+
+		$(document).find("#currentH").text(localStorage.getItem("insideNow").substr(localStorage.getItem("insideNow").indexOf(",")+1));
+		$(document).find("#currentH").css("color","orange");
 	}
 
 	RequestMaxMinHeat();
@@ -261,12 +268,17 @@
 -->
 <form id="heat-data">
  <table> 
- 	<!--
- 	<tr><td> The current temperature is set to: <span id="currTempSet"> </span> </td></tr>
- 	-->
+ 	
+ 	<tr>
+ 		<td>The current temperature is <span id="currentH"> </span>&degC.</td>
+ 		<td>Maxium temperature is <span id="maxH"> </span>&degC.</td>
+ 		<td>Minimum temperature is <span id="minH"> </span>&degC.</td>
+ 	</tr>
+ 	
  	<tr>	
 		<td>Enter Temperature: </td>
-		<td><input type="text" name="newHeat" maxlenght="2" pattern="[1-4][0-9]" size="3" value="" /></td>
+		<td><input type="text" name="newHeat" maxlenght="2" 
+			size="3" value="" /></td>
 		<td><input type="submit" value="Submit"/></td>
 	</tr>
  </table>
