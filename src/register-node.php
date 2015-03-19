@@ -445,35 +445,6 @@ function get_client_ip() {
 	    });
 	}
 
-	function RequestBookingData(){
-		
-		//all wrong atm 
-		var 
-			groupID = "1",
-			attrID = "1",
-			attrNumber = "1";	
-
-		$.ajax({
-			
-			url: "http://"+servIP+"/emoncms/feed/value.json?apikey="+apiKey+
-			 "&node="+nodeID+
-			 "&id="+groupID+""+attrID+""+attrNumber+""+nodeID+
-			 "&timeout="+timeout+"",
-			
-			type:"post",
-			async: true, cache: false,
-
-			success: function(data){
-				//do all the post processing aw yeah
-	    		ProcessBookingData(data);
-	    	}, 
-
-	    	error: function(data){
-	    		console.log("ERROR 10 - Booking Data not updated");
-	    	}
-	    });
-	}
-
 
 	//end of requests
 	function TextDataTemperature(){
@@ -520,12 +491,6 @@ function get_client_ip() {
 
 	}
 
-	//not done yet
-	function ProcessBookingData(bookData){
-
-		//nothing
-
-	}
 		
 </script>
 </html>
