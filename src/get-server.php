@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 
 //from stack overflow
 //Function to get the client IP address
+/*
 function get_client_ip() {
     $ipaddress = "";
     if (getenv("HTTP_CLIENT_IP"))
@@ -23,11 +24,13 @@ function get_client_ip() {
         $ipaddress = "UNKNOWN";
     return $ipaddress;
 }
-
+*/
+/*
 echo("
     <script>
         localStorage.setItem( 'CLIENT_ADDR', \"". get_client_ip()."\");
         localStorage.setItem( 'SERVER_ADDR', \"". $_SERVER["SERVER_ADDR"]."\");
     </script>
 ");
+*/
 ?>

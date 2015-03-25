@@ -1,5 +1,6 @@
 <?php
 	include("get-server.php");
+	include( "register-node.php");
 ?>
 
 <!DOCTYPE html>
@@ -22,8 +23,7 @@
 	  	<script src="libraries/flotr2.min.js"></script>
 		<script src="libraries/moment.min.js"></script>
 		<script src="libraries/fullcalendar.min.js"></script>
-		<script src="register-node.js"></script>
-
+		
 		<script>
 			$(function() {
 

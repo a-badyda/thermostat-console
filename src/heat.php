@@ -1,3 +1,8 @@
+<?php
+	include("get-server.php");
+	include( "register-node.php");
+?>
+
 <style>
 	#house-chart{
 		float:left;
@@ -16,8 +21,6 @@
 
 </style>
 
-
-<script src="register-node.js"></script>
 <script>	
 	TextDataTemperature();
 

@@ -1,5 +1,4 @@
 <?php
-	include("register-node.php");
 	include("get-server.php");
 ?>
 <!DOCTYPE html>
@@ -8,10 +7,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link href="libraries/css/fullcalendar.css" rel="stylesheet" />
 	<link href="libraries/css/fullcalendar.print.css" rel="stylesheet" media="print" />
-
-	<script src="register-node.js"></script>
-
-
 
 	<script>
 

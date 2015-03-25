@@ -1,4 +1,7 @@
-
+<?php
+	include("get-server.php");
+	include( "register-node.php");
+?>
 <style type="text/css">
 	body{
 	    font-family: verdana;
@@ -7,8 +10,6 @@
 
 <h2> Temperature Statistics </h2>
 
-
-<script src="register-node.js"></script>
 <script> console.log("stats loaded"); 
 
 	TextDataTemperature();
