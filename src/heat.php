@@ -269,29 +269,28 @@
 	console.log("heating loaded"); 
 </script>
 
-<div style="float:center">
-	<h2> Heating Control </h2>
+<h2> Heating Control </h2>
 
-	<p class="local-conditions-text-data"></p>
+<p class="local-conditions-text-data"></p>
 
-	<canvas id="house-chart"></canvas>
+<canvas id="house-chart"></canvas>
 
-	<canvas id="thermostat-chart"></canvas>
+<canvas id="thermostat-chart"></canvas>
 
-	<form id="heat-data">
-	 <table> 
-	 	
-	 	<tr>
-	 		<td>The thermostat is set to <span id="currentH"> </span>&degC.</td>
-	 		<td>Maxium temperature is <span id="maxH"> </span>&degC.</td>
-	 		<td>Minimum temperature is <span id="minH"> </span>&degC.</td>
-	 	</tr>
-	 	<tr>	
-			<td>Enter Temperature: </td>
-			<td><input id="newHeat" type="text" name="newHeat" maxlenght="2" 
-				size="3" value="" /></td>
-			<td><input type="submit" value="Submit"/></td>
-		</tr>
-	 </table>
-	</form>
-</div>
+<form id="heat-data">
+ <table> 
+ 	
+ 	<tr>
+ 		<td>The thermostat is set to <span id="currentH"> </span>&degC.</td>
+ 		<td>Maxium temperature is <span id="maxH"> </span>&degC.</td>
+ 		<td>Minimum temperature is <span id="minH"> </span>&degC.</td>
+ 	</tr>
+ 	<tr>	
+		<td>Enter Temperature: </td>
+		<td><input id="newHeat" type="text" name="newHeat" maxlenght="2" 
+			size="3" value="" /></td>
+		<td><input type="submit" value="Submit"/></td>
+	</tr>
+ </table>
+</form>
+
