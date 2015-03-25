@@ -1,6 +1,7 @@
 <?php
-	include("register-node.php");
+	include("get-server.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -21,6 +22,7 @@
 	  	<script src="libraries/flotr2.min.js"></script>
 		<script src="libraries/moment.min.js"></script>
 		<script src="libraries/fullcalendar.min.js"></script>
+		<script src="register-node.js"></script>
 
 		<script>
 			$(function() {
@@ -38,7 +40,7 @@
 					activate: function(event, ui){
 						//console.log(event);
 						//log called but not registering fullCalendar request - undefined
-						$("#calendar").fullCalendar("render");
+						//$("#calendar").fullCalendar("render");
 					}
 				});
 		  	});
