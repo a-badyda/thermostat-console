@@ -1,5 +1,29 @@
 <?php
-	include("get-server.php");
+	
+	//for testing purposes only, delete on release 
+	ini_set("display_errors",1);  
+	error_reporting(E_ALL);
+
+	//from stack overflow
+	//Function to get the client IP address
+	function get_client_ip() {
+	    $ipaddress = "";
+	    if (getenv("HTTP_CLIENT_IP"))
+	        $ipaddress = getenv("HTTP_CLIENT_IP");
+	    else if(getenv("HTTP_X_FORWARDED_FOR"))
+	        $ipaddress = getenv("HTTP_X_FORWARDED_FOR");
+	    else if(getenv("HTTP_X_FORWARDED"))
+	        $ipaddress = getenv("HTTP_X_FORWARDED");
+	    else if(getenv("HTTP_FORWARDED_FOR"))
+	        $ipaddress = getenv("HTTP_FORWARDED_FOR");
+	    else if(getenv("HTTP_FORWARDED"))
+	       $ipaddress = getenv("HTTP_FORWARDED");
+	    else if(getenv("REMOTE_ADDR"))
+	        $ipaddress = getenv("REMOTE_ADDR");
+	    else
+	        $ipaddress = "UNKNOWN";
+	    return $ipaddress;
+	}	
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +34,6 @@
 
 	<script>
 
-		
 
 		$(document).ready(function() {
 		
@@ -24,60 +47,7 @@
 				editable: false,
 				eventLimit: true, // allow "more" link when too many events
 				events: [
-					{
-						title: "All Day Event",
-						start: "2015-03-01"
-					},
-					{
-						title: "Long Event",
-						start: "2015-03-07",
-						end: "2015-03-10"
-					},
-					{
-						id: 999,
-						title: "Repeating Event",
-						start: "2015-03-09T16:00:00"
-					},
-					{
-						id: 999,
-						title: "Repeating Event",
-						start: "2015-03-16T16:00:00"
-					},
-					{
-						title: "Conference",
-						start: "2015-03-11",
-						end: "2015-03-13"
-					},
-					{
-						title: "Meeting",
-						start: "2015-03-12T10:30:00",
-						end: "2015-03-12T12:30:00"
-					},
-					{
-						title: "Lunch",
-						start: "2015-03-12T12:00:00"
-					},
-					{
-						title: "Meeting",
-						start: "2015-03-12T14:30:00"
-					},
-					{
-						title: "Happy Hour",
-						start: "2015-03-12T17:30:00"
-					},
-					{
-						title: "Dinner",
-						start: "2015-03-12T20:00:00"
-					},
-					{
-						title: "Birthday Party",
-						start: "2015-03-13T07:00:00"
-					},
-					{
-						title: "Click for Google",
-						url: "http://google.com/",
-						start: "2015-03-28"
-					}
+					
 				]
 			});
 			
@@ -88,7 +58,42 @@
 				$(document).find(".fc-center").find("h2").text(weekString);
 			});
 
-			//
+			//bunch of global vars for now 
+			var servIP = <?php print_r( "\"". $_SERVER["SERVER_ADDR"] ."\"");  ?>;
+			var localIP= <?php print_r( "\"". get_client_ip() ."\"");  ?>;
+
+			var apiKey= "777";
+			var timeout= "1000";
+			var nodeID= localStorage.getItem("nodeID");
+			
+
+			//need more text
+
+			function GetCalendarData(){
+
+				$.ajax({
+					//url: " https://"+servIP+"/fullcalendar/demos/default.html",
+					url: "https://"+servIP+"/thermostat-console/src/test-calendar.php", 
+
+			    	type: "post",
+			    	async: true, cache: false,
+			    	
+			    	success: function(data){
+			    		//do whatever to confirm
+			    		console.log("calendar data request sent");
+			    		console.log(data);
+
+			    	}, 
+
+			    	error: function(data){
+			    		console.log("ERROR 10 - Attribute not registered");
+			    	}
+			    });
+
+			}
+
+			GetCalendarData();
+
 		});
 
 	</script>
