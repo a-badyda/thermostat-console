@@ -542,8 +542,7 @@ function get_client_ip() {
 	    	success: function(data){
 	    		//do whatever to confirm
 	    		console.log("calendar data request sent");
-	    		console.log(data);
-
+	    		ProcessBookingData(JSON.parse(data));
 	    	}, 
 
 	    	error: function(data){
@@ -556,7 +555,17 @@ function get_client_ip() {
 	//not done yet
 	function ProcessBookingData(bookData){
 
-		//nothing
+		//gotta account for all the possible fields in the object
+		for (var i = bookData.length - 1; i >= 0; i--) {
+			//count down from the last to first
+
+			if( bookData[i].hasOwnProperty("start") ){
+				console.log("hello");
+			}
+			else{ 
+				console.log("well nope");
+			}
+		};
 
 	}
 		

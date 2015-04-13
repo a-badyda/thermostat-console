@@ -52,15 +52,6 @@
 			var servIP = <?php print_r( "\"". $_SERVER["SERVER_ADDR"] ."\"");  ?>;
 			var localIP= <?php print_r( "\"". get_client_ip() ."\"");  ?>;
 
-			var apiKey= "777";
-			var timeout= "1000";
-			var nodeID= localStorage.getItem("nodeID");
-			
-
-			//need more text
-
-			
-
 			GetCalendarData();
 
 		});
