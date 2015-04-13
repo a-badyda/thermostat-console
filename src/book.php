@@ -12,8 +12,15 @@
 <html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
 	<link href="libraries/css/fullcalendar.css" rel="stylesheet" />
 	<link href="libraries/css/fullcalendar.print.css" rel="stylesheet" media="print" />
+	  	
+		<script src="libraries/jquery-1.11.2.js"></script>
+		  	<script src="libraries/jquery-ui.js"></script>
+		  	<script src="libraries/flotr2.min.js"></script>
+			<script src="libraries/moment.min.js"></script>
+			<script src="libraries/fullcalendar.min.js"></script>
 
 	<script>
 
