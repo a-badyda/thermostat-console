@@ -534,7 +534,7 @@ function get_client_ip() {
 
 		$.ajax({
 			//url: " https://"+servIP+"/fullcalendar/demos/default.html",
-			url: "https://"+servIP+"/thermostat-console/src/test-calendar.php", 
+			url: "http://"+servIP+"/thermostat-console/src/test-calendar.php", 
 
 	    	type: "post",
 	    	async: true, cache: false,
