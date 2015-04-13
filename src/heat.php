@@ -2,7 +2,7 @@
 	include("get-server.php");
 	include( "register-node.php");
 ?>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <style>
 	#house-chart{
 		float:left;

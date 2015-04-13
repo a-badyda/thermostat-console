@@ -1,9 +1,10 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <?php
 // The JSON standard MIME header.
 header('Content-type: application/json');
 
 //some fake temperature data to send over to the server
-	{"events":[
+	echo '{"events":[
 		{
 			"title": "All Day Event",
 			"start": "2015-03-01"
@@ -58,6 +59,6 @@ header('Content-type: application/json');
 			"url": "http://google.com/",
 			"start": "2015-03-28"
 		}
-	]}
+	]}'
 
 ?>

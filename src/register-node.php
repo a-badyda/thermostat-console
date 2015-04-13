@@ -27,7 +27,9 @@ function get_client_ip() {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-	    
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
 <script type="text/javascript" src="libraries/jquery-1.11.2.js"></script>
             
 <script type="text/javascript">
@@ -517,6 +519,29 @@ function get_client_ip() {
 				});
 			}
 		});
+
+	}
+
+	function GetCalendarData(){
+
+		$.ajax({
+			//url: " https://"+servIP+"/fullcalendar/demos/default.html",
+			url: "https://"+servIP+"/thermostat-console/src/test-calendar.php", 
+
+	    	type: "post",
+	    	async: true, cache: false,
+	    	
+	    	success: function(data){
+	    		//do whatever to confirm
+	    		console.log("calendar data request sent");
+	    		console.log(data);
+
+	    	}, 
+
+	    	error: function(data){
+	    		console.log("ERROR 10 - Attribute not registered");
+	    	}
+	    });
 
 	}
 
