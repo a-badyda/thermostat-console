@@ -55,13 +55,10 @@ $event = array(
 		),
 		array(
 			"title"=>"Click for Google",
-			"url"=>"http://google.com/",
 			"start"=>"2015-03-28"
 		)
 	);
 
 print_r(json_encode($event));
 
-
-echo" ";
 ?>
