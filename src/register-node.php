@@ -115,6 +115,11 @@ function get_client_ip() {
 		}
 	};
 
+	//empty as the group exists but has no specs yet 
+	var basicGroup ={
+
+	};
+
 	//check if the node ID is registered on the said device 
 	if (localStorage.getItem("nodeID") === null) {
 		//start registering everything 
@@ -503,18 +508,16 @@ function get_client_ip() {
 	function GetCalendarData(){
 
 		$.ajax({
-			//url: " https://"+servIP+"/fullcalendar/demos/default.html",
+			//url: " https://"+servIP+"/emoncms/fullcalendar/index.php",
 			url: "http://"+servIP+"/thermostat-console/src/test-calendar.php", 
-
 	    	type: "post",
 	    	async: true, cache: false,
 	    	
 	    	success: function(data){
 	    		//do whatever to confirm
 	    		console.log("calendar data request sent");
-	    		//var temp =JSON.parse(data);
-	    		//ProcessBookingData(temp);
-	    		ProcessBookingData($.parseJSON( data ));
+	    		console.log(data);
+	    		ProcessBookingData(data);
 	    	}, 
 
 	    	error: function(data){
@@ -528,20 +531,9 @@ function get_client_ip() {
 	//not done yet
 	function ProcessBookingData(bookData){
 
-		console.log(bookData);
+		//console.log(bookData);
 		
-		//gotta account for all the possible fields in the object
-		for (var i = bookData.length - 1; i >= 0; i--) {
-			//count down from the last to first
-
-			if( bookData[i].hasOwnProperty("start") ){
-				console.log("hello");
-			}
-			else{ 
-				console.log("well nope");
-			}
-		};
-
+		console.log("hello");
 
 	}
 		
