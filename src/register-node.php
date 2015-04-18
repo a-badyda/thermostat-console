@@ -173,7 +173,7 @@ function get_client_ip() {
 	    	},
 
 	    	error: function(data){
-	    		console.log("ERROR 10 - Node not registered");
+	    		console.log("70 = Communication error on send");
 	    	}
 	    });
 	}
@@ -200,7 +200,7 @@ function get_client_ip() {
 	    	}, 
 
 	    	error: function(data){
-	    		console.log("ERROR 10 - Attribute not registered");
+	    		console.log("70 = Communication error on send");
 	    	}
 	    });
 
@@ -236,7 +236,7 @@ function get_client_ip() {
 	    	}, 
 
 	    	error: function(data){
-	    		console.log("ERROR 10 - Attribute not registered");
+	    		console.log("70 = Communication error on send");
 	    	},
 	    	done: function(data){
 	    		//callback(storeData);
@@ -272,7 +272,7 @@ function get_client_ip() {
 	    	}, 
 
 	    	error: function(data){
-	    		console.log("ERROR 10 - Attribute not registered");
+	    		console.log("70 = Communication error on send");
 	    	},
 	    	done: function(data){
 	    		//return storeData;
@@ -398,7 +398,7 @@ function get_client_ip() {
 	    	}, 
 
 	    	error: function(data){
-	    		console.log("ERROR 10 - Attribute not registered");
+	    		console.log("70 = Communication error on send");
 	    	},
 	    	done: function(data){
 	    		//callback(storeData);
@@ -443,7 +443,7 @@ function get_client_ip() {
 
 	    			},
 	    			error: function(data){
-						console.log("ERROR 10 - Max and Min heat not fetched");
+						console.log("70 = Communication error on send");
 	    			}
 
 	    		})
@@ -451,7 +451,7 @@ function get_client_ip() {
 	    	}, 
 
 	    	error: function(data){
-	    		console.log("ERROR 10 - Max and Min heat not fetched");
+	    		console.log("70 = Communication error on send");
 	    	},
 	    	done: function(data){
 	    		//callback(storeData);
