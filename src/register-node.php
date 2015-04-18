@@ -505,6 +505,9 @@ function get_client_ip() {
 
 	}
 
+	
+	/*
+
 	function GetCalendarData(){
 
 		$.ajax({
@@ -518,6 +521,7 @@ function get_client_ip() {
 	    		console.log("calendar data request sent");
 	    		console.log(data);
 	    		ProcessBookingData(data);
+	    		return data;
 	    	}, 
 
 	    	error: function(data){
@@ -531,11 +535,16 @@ function get_client_ip() {
 	//not done yet
 	function ProcessBookingData(bookData){
 
-		//console.log(bookData);
-		
 		console.log("hello");
 
-	}
+		for (var i = 0, l = bookData.length; i < l; i++) {
+		    var obj = bookData[i];
+		    console.log(obj.start);
+		    // ...
+		}
+
+		//print_r
+	} */
 		
 </script>
 </html>

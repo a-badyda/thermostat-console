@@ -26,6 +26,8 @@
 
 
 		$(document).ready(function() {
+
+			var servIP = <?php print_r( "\"". $_SERVER["SERVER_ADDR"] ."\"");  ?>;
 		
 			$("#calendar").fullCalendar({
 				header: {
@@ -36,9 +38,7 @@
 				//defaultDate: "2015-03-12",
 				editable: false,
 				eventLimit: true, // allow "more" link when too many events
-				events: [
-					
-				]
+				events: "http://"+servIP+"/thermostat-console/src/test-calendar.php"
 			});
 			
 			//real quick function to run to get rid of a stupid error
@@ -50,10 +50,7 @@
 
 			//bunch of global vars for now 
 			var servIP = <?php print_r( "\"". $_SERVER["SERVER_ADDR"] ."\"");  ?>;
-			var localIP= <?php print_r( "\"". get_client_ip() ."\"");  ?>;
-
-			GetCalendarData();
-
+			var localIP= <?php print_r( "\"". get_client_ip() ."\"");  ?>;			
 		});
 
 	</script>
