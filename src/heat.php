@@ -30,23 +30,28 @@
 <script>	
 	TextDataTemperature();
 
-	//$(".switchButton").toggleSwitch();
+	$(".switchButton").toggleSwitch();
 
 	//turn cooling request off when asking to turn heat up
-	$("#heat").click(function() {
-
-   		//if($('#cool').is(':checked')) { $('#cool').prop('checked', false); }
+	$("#heatOn").parent().click(function() {
+		if($('#heatOn').is(':checked')) { 
+				if( $('#coolOn').prop( "checked" )) { 
+		 			console.log("both are on");
+		 			$('#coolOn').prop('checked', false); 
+		 		} else{}
+ 		} else{}
 	});
 
-	//turn heating request off when asking to cool the room 
-	$("#cool").click(function() {
-   		if($('#heat').is(':checked')) { 
-   			$('#heat').prop('checked', false); 
-   			
-   		}
+	$("#coolOn").parent().click(function() {
+		if($('#coolOn').is(':checked')) { 
+				if( $('#heatOn').prop( "checked" )) { 
+		 			console.log("both are on");
+		 			$('#heatOn').prop('checked', false); 
+		 		} else{}
+ 		} else{}
 	});
-	//allow two buttons to be off at once
 
+ 
 
 	//!!! start stack overflow code !!!//
     var PIXEL_RATIO = (function () {
@@ -316,11 +321,10 @@
  	</tr>
 
 	<tr>
-	    
-	    <td><label for="flip-checkbox-1">Turn on/off the cooling:</label></td>
-	    <td><input type="checkbox" class="switchButton"/ id="cool"></td>
-	    <td><label for="flip-checkbox-1">Turn on/off the heating:</label></td>
-	    <td><input type="checkbox" class="switchButton" id="heat"/></td>
+	    <td><label for="heat">Turn on/off the heating:</label></td>
+	    <td><input type="checkbox" class="switchButton" id="heatOn"/></td>
+	    <td><label for="cool">Turn on/off the cooling:</label></td>
+	    <td><input type="checkbox" class="switchButton" id="coolOn"></td>
 	    <td><input type="submit" value="Apply" /></td>
 	</tr>
 
