@@ -250,7 +250,9 @@
 		});
 	}
 
-	DrawThermostat();
+	//DrawThermostat();
+
+
 
 
 	//handle max min heat call & printing 
@@ -288,12 +290,18 @@
  		<td>Maxium temperature is <span id="maxH"> </span>&degC.</td>
  		<td>Minimum temperature is <span id="minH"> </span>&degC.</td>
  	</tr>
+
+    <label for="flip-checkbox-1">Flip toggle switch checkbox:</label>
+    <input type="checkbox" data-role="flipswitch" name="flip-checkbox-1" id="flip-checkbox-1">
+    ><input type="submit" value="Submit"/>
+ 	<!--
  	<tr>	
 		<td>Enter Temperature: </td>
 		<td><input id="newHeat" type="text" name="newHeat" maxlenght="2" 
 			size="3" value="" /></td>
 		<td><input type="submit" value="Submit"/></td>
 	</tr>
+	-->
  </table>
 </form>
 

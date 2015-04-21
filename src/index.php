@@ -37,11 +37,9 @@
 
 				$("#tabs").tabs({
 					//never activated for some reason
-					activate: function(event, ui){
-						//console.log(event);
-						//log called but not registering fullCalendar request - undefined
-						//$("#calendar").fullCalendar("render");
-					}
+					activate: function(event, ui) {
+				        $('#calendar').fullCalendar('render');
+				    }
 				});
 		  	});
 
