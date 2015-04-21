@@ -17,12 +17,15 @@
 	  	
 	  	<title>Themostat Console Interface</title>
 	  	<link rel="stylesheet" href="libraries/css/jquery-ui.css">
+	  	<link rel=" stylesheet" type="text/css" href="libraries/css/tinytools.toggleswitch.min.css">
+
 	  	
 		<script src="libraries/jquery-1.11.2.js"></script>
 		  	<script src="libraries/jquery-ui.js"></script>
 		  	<script src="libraries/flotr2.min.js"></script>
 			<script src="libraries/moment.min.js"></script>
 			<script src="libraries/fullcalendar.min.js"></script>
+			<script src="libraries/tinytools.toggleswitch.min.js"></script>
 		
 		<script>
 			$(function() {
@@ -41,6 +44,7 @@
 				        $('#calendar').fullCalendar('render');
 				    }
 				});
+
 		  	});
 
 

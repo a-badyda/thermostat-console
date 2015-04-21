@@ -3,6 +3,9 @@
 	include( "register-node.php");
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script src="libraries/tinytools.toggleswitch.min.js"></script>
+
 <style>
 	#house-chart{
 		float:left;
@@ -17,12 +20,33 @@
 	div{
 		float:center;
 	}
+	input{
+		margin-left:2em;
+	}
 	
 
 </style>
 
 <script>	
 	TextDataTemperature();
+
+	//$(".switchButton").toggleSwitch();
+
+	//turn cooling request off when asking to turn heat up
+	$("#heat").click(function() {
+
+   		//if($('#cool').is(':checked')) { $('#cool').prop('checked', false); }
+	});
+
+	//turn heating request off when asking to cool the room 
+	$("#cool").click(function() {
+   		if($('#heat').is(':checked')) { 
+   			$('#heat').prop('checked', false); 
+   			
+   		}
+	});
+	//allow two buttons to be off at once
+
 
 	//!!! start stack overflow code !!!//
     var PIXEL_RATIO = (function () {
@@ -291,11 +315,17 @@
  		<td>Minimum temperature is <span id="minH"> </span>&degC.</td>
  	</tr>
 
-    <label for="flip-checkbox-1">Flip toggle switch checkbox:</label>
-    <input type="checkbox" data-role="flipswitch" name="flip-checkbox-1" id="flip-checkbox-1">
-    ><input type="submit" value="Submit"/>
+	<tr>
+	    
+	    <td><label for="flip-checkbox-1">Turn on/off the cooling:</label></td>
+	    <td><input type="checkbox" class="switchButton"/ id="cool"></td>
+	    <td><label for="flip-checkbox-1">Turn on/off the heating:</label></td>
+	    <td><input type="checkbox" class="switchButton" id="heat"/></td>
+	    <td><input type="submit" value="Apply" /></td>
+	</tr>
+
  	<!--
- 	<tr>	
+ 	<td>	
 		<td>Enter Temperature: </td>
 		<td><input id="newHeat" type="text" name="newHeat" maxlenght="2" 
 			size="3" value="" /></td>
