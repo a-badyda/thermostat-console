@@ -325,7 +325,7 @@
 	    <td><input type="checkbox" class="switchButton" id="heatOn"/></td>
 	    <td><label for="cool">Turn on/off the cooling:</label></td>
 	    <td><input type="checkbox" class="switchButton" id="coolOn"></td>
-	    <td><input type="submit" value="Apply" /></td>
+	    <td><input type="button" value="Apply"  onclick="SendHotColdRequest()" /></td>
 	</tr>
 
  	<!--

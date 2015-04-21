@@ -27,8 +27,6 @@
 
 		$(document).ready(function() {
 
-			$("#ToggleSwitchSample").toggleSwitch();
-
 			var servIP = <?php print_r( "\"". $_SERVER["SERVER_ADDR"] ."\"");  ?>;
 		
 			$("#calendar").fullCalendar({
