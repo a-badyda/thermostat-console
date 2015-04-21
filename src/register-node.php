@@ -126,6 +126,71 @@ function get_client_ip() {
 			RegisterNode();  			
 	}
 
+	function SendHotColdRequest(){
+		//if mutually exclusive - if heatOn 1 then coolOn has to be 0 
+		//both can have value of 0 - all thermostat is off then 
+		alert("temperature request was sent!");
+		
+		//use jQuery to determine if heat or cool is on 
+		heatOn =0;
+		coolOn =0;
+		if( $('#heatOn:checked').val() == "on"){ heatOn = 1 } else{}
+		if( $('#coolOn:checked').val() == "on"){ coolOn = 1 } else{}
+
+		console.log(coolOn + " "+ heatOn);
+
+		var 
+			groupID = "0x0201",
+			attrID = "0x0000",
+			attrNumber = "0x0007"; //PICoolingDemand
+			
+
+		if( heatOn > 0 ){
+			attrNumber = "0x0008"; //PIHeatingDemand
+			$.ajax({
+				url: "http://"+servIP+"/emoncms/input/post.json?apikey="+apiKey+"&node="+nodeID+
+				"&json={"+groupID+""+attrID+""+attrNumber+","+heatOn+"}&timeout="+timeout+"",
+
+				type:"post", async: true, cache: false,
+
+				success: function(){	console.log("heat turned on"); }, 
+		    	error: function(data){	console.log("70 = Communication error on send"); }
+		    	
+		    });
+		}
+		else if( (heatOn == 0)  && (coolOn == 0)){ //2 ajax calls
+			attrNumber = "0x0008"; 
+
+			for (var i = 1; i >= 0; i--) {
+				$.ajax({
+					url: "http://"+servIP+"/emoncms/input/post.json?apikey="+apiKey+"&node="+nodeID+""+
+					"&json={"+groupID+""+attrID+""+attrNumber+","+heatOn+"}&timeout="+timeout+"",
+					type:"post", async: true, cache: false,
+
+					success: function(){	console.log("thermostat turned off"); }, 
+			    	error: function(data){	console.log("70 = Communication error on send"); }
+			    	
+			    });
+			    attrNumber = "0x0008"; //PIHeatingDemand
+			}
+		}
+
+		else{
+
+			$.ajax({
+				url: " http://"+servIP+"/emoncms/input/post.json?apikey="+apiKey+"&node="+nodeID+
+				"&json={"+groupID+""+attrID+""+attrNumber+","+coolOn+"}&timeout="+timeout+"",
+
+				type:"post", async: true, cache: false,
+
+				success: function(){	console.log("cool turned on"); }, 
+		    	error: function(data){	console.log("70 = Communication error on send"); }
+		    	
+		    });
+		}
+	}
+
+
 	function RegisterNode(){ //except i cant test it 
 	    
 	    $.ajax({
@@ -505,7 +570,7 @@ function get_client_ip() {
 
 	}
 
-	
+
 	/*
 
 	function GetCalendarData(){
