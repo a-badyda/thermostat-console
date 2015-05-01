@@ -205,36 +205,38 @@ function get_client_ip() {
 	    		//do whatever to confirm
 	    		console.log("request for node sent");
 	    		console.log(data);
-	    		nodeID = data; 
 	    		
 	    		//test code
-	    		if (nodeID===null){ nodeID = 5}
+	    		if (nodeID===null){ 
 
-	    		localStorage.setItem("nodeID", data);
-	    		//thermostat info load in data  -- CONSIDER DEF. VALUES
-			  	var groupID = thermostatGroup.groupID;
-			  	var infoAttrID = thermostatGroup.attrSet.thermostatInfo.attrSetID;
+	    			nodeID = 5 //comment out when working on live system
 
-			 	for (var i = thermostatGroup.attrSet.thermostatInfo.attrSet.length - 1; i >= 0; i--) {
-			  		var attrNumber = thermostatGroup.attrSet.thermostatInfo.attrSet[i];
+		    		localStorage.setItem("nodeID", data);
+		    		//thermostat info load in data  -- CONSIDER DEF. VALUES
+				  	var groupID = thermostatGroup.groupID;
+				  	var infoAttrID = thermostatGroup.attrSet.thermostatInfo.attrSetID;
 
-			  		RegisterAttribute(groupID, infoAttrID, attrNumber, 55);
-			  	}
+				 	for (var i = thermostatGroup.attrSet.thermostatInfo.attrSet.length - 1; i >= 0; i--) {
+				  		var attrNumber = thermostatGroup.attrSet.thermostatInfo.attrSet[i];
 
-			  	//thermostat settings load in data -- CONSIDER DEF. VALUES
-				var infoAttrID = thermostatGroup.attrSet.thermostatSettings.attrSetID;
+				  		RegisterAttribute(groupID, infoAttrID, attrNumber, 55);
+				  	}
 
-			 	for (var i = thermostatGroup.attrSet.thermostatSettings.attrSet.length - 1; i >= 0; i--) {
-			  		var attrNumber = thermostatGroup.attrSet.thermostatSettings.attrSet[i];
+				  	//thermostat settings load in data -- CONSIDER DEF. VALUES
+					var infoAttrID = thermostatGroup.attrSet.thermostatSettings.attrSetID;
 
-			  		RegisterAttribute(groupID, infoAttrID, attrNumber, 22);
-			  	}
+				 	for (var i = thermostatGroup.attrSet.thermostatSettings.attrSet.length - 1; i >= 0; i--) {
+				  		var attrNumber = thermostatGroup.attrSet.thermostatSettings.attrSet[i];
 
-			  	//register humidity stuff
-			  	for (var i = humidityGroup.atrributeSet.attrSet.length-1; i >=0; i--){
-			  		var attrNumber = humidityGroup.attributeSet.attrSet[i];
-			  		RegisterAttribute(humidityGroup.groupID, humidityGroup.attributeSet.attrSetID, attrNumber, 22);
-			  	}
+				  		RegisterAttribute(groupID, infoAttrID, attrNumber, 22);
+				  	}
+
+				  	//register humidity stuff
+				  	for (var i = humidityGroup.atrributeSet.attrSet.length-1; i >=0; i--){
+				  		var attrNumber = humidityGroup.attributeSet.attrSet[i];
+				  		RegisterAttribute(humidityGroup.groupID, humidityGroup.attributeSet.attrSetID, attrNumber, 22);
+				  	}
+				}
 	    	},
 
 	    	error: function(data){
