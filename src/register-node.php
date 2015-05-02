@@ -147,18 +147,31 @@ function get_client_ip() {
 
 		if( heatOn > 0 ){
 			attrNumber = "0x0008"; //PIHeatingDemand
+			//first evaluate heat
 			$.ajax({
-				url: "http://"+servIP+"/emoncms/input/post.json?apikey="+apiKey+"&node="+nodeID+
+				url: " http://"+servIP+"/emoncms/input/post.json?apikey="+apiKey+"&node="+nodeID+
+				"&json={"+groupID+""+attrID+""+attrNumber+","+coolOn+"}&timeout="+timeout+"",
+
+				type:"post", async: true, cache: false,
+
+				success: function(){	console.log("cool turned on"); }, 
+		    	error: function(data){	console.log("70 = Communication error on send"); }
+		    	
+		    });
+
+			//then evaluate another
+		    $.ajax({
+				url: " http://"+servIP+"/emoncms/input/post.json?apikey="+apiKey+"&node="+nodeID+
 				"&json={"+groupID+""+attrID+""+attrNumber+","+heatOn+"}&timeout="+timeout+"",
 
 				type:"post", async: true, cache: false,
 
-				success: function(){	console.log("heat turned on"); }, 
+				success: function(){	console.log("cool turned on"); }, 
 		    	error: function(data){	console.log("70 = Communication error on send"); }
 		    	
 		    });
 		}
-		else if( (heatOn == 0)  && (coolOn == 0)){ //2 ajax calls
+		else if( (heatOn == 0)  && (coolOn == 0)){ //2 ajax calls - turn off heating and cooling
 			attrNumber = "0x0008"; 
 
 			for (var i = 1; i >= 0; i--) {
@@ -177,6 +190,7 @@ function get_client_ip() {
 
 		else{
 
+			//enable one feature (that sent over value 1)
 			$.ajax({
 				url: " http://"+servIP+"/emoncms/input/post.json?apikey="+apiKey+"&node="+nodeID+
 				"&json={"+groupID+""+attrID+""+attrNumber+","+coolOn+"}&timeout="+timeout+"",
@@ -187,6 +201,20 @@ function get_client_ip() {
 		    	error: function(data){	console.log("70 = Communication error on send"); }
 		    	
 		    });
+
+			//disable the other feature (that sent over value 0)
+		    $.ajax({
+				url: " http://"+servIP+"/emoncms/input/post.json?apikey="+apiKey+"&node="+nodeID+
+				"&json={"+groupID+""+attrID+""+attrNumber+","+heatOn+"}&timeout="+timeout+"",
+
+				type:"post", async: true, cache: false,
+
+				success: function(){	console.log("cool turned on"); }, 
+		    	error: function(data){	console.log("70 = Communication error on send"); }
+		    	
+		    });
+
+
 		}
 	}
 
